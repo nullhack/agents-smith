@@ -1,4 +1,4 @@
-# Branding — pairai
+# Branding — smith
 
 > *Inevitably, Mr. Anderson, your project will be assimilated.*
 
@@ -8,10 +8,10 @@ Agents read this file before generating release names, C4 diagrams, README banne
 
 ## Identity
 
-- **Project name:** pairai
+- **Project name:** smith
 - **Tagline:** Pair program with AI, the right way.
-- **Mission:** Transform any ordinary project into a high-performing, AI-augmented system. Like Agent Smith, pairai assimilates — it enters a project, copies its patterns, and returns something more capable than what it found.
-- **Vision:** Inevitable. Every developer, every codebase, every workflow — all of them, eventually, will pair with AI. pairai is how that happens the right way.
+- **Mission:** Transform any ordinary project into a high-performing, AI-augmented system. Like Agent Smith, smith assimilates — it enters a project, copies its patterns, and returns something more capable than what it found.
+- **Vision:** Inevitable. Every developer, every codebase, every workflow — all of them, eventually, will pair with AI. smith is how that happens the right way.
 - **Tone of voice:** Precise, inevitable, coldly confident — with the dry wit of someone who already knows how this ends. Not cruel; purposeful. Like Smith delivering a truth you weren't ready to hear: direct, unhurried, certain.
 
 ## Visual
@@ -56,7 +56,7 @@ Smith's register: formal address, declarative certainty, philosophical weight de
 
 ## Project Summary
 
-pairai is an AI pair programming platform that assimilates ordinary projects into
+smith is an AI pair programming platform that assimilates ordinary projects into
 high-performing, AI-augmented systems. It pairs developers with AI partners across
 the full delivery workflow — from scope discovery through release — so every project
 ships with better design, sharper focus, and without ceremony. Inevitable, precise,
