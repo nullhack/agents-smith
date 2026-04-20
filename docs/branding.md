@@ -31,42 +31,20 @@ The palette is drawn from Agent Smith's world: the void of the Matrix, the flick
 - **Convention:** `the <adjective> <matrix-character>`
 - **Theme:** Every release is a Matrix character that pairai has converted and elevated. The adjective is chosen to echo Smith's register — cold precision, philosophical weight, declarative force — while reflecting the defining quality of that release (stability, performance, new capability, etc.).
 - **Rationale:** pairai assimilates projects the way Smith converts agents — the pattern enters, overwrites, and returns something more powerful. Each release name is the converted character: proof of transformation.
+- **Composition:** Select one adjective and one character. Any combination is valid. Prefer pairings where the adjective illuminates something true about the release — a stability release might reach for `unwavering` or `foundational`; a breaking change might call for `fractured` or `overwritten`; a landmark might demand `inevitable`.
 - **Excluded words:** *(none)*
 
-### Character–Adjective Table
+### Characters
 
-Each character is paired with a primary adjective drawn from their defining trait in the films, and an alternate for variety. Adjectives stay in Smith's register: formal, precise, final.
+All named characters from the Matrix trilogy, in order of narrative weight:
 
-| Release name | Character | Defining trait | Alt adjective |
-|---|---|---|---|
-| `the-inevitable-smith` | Smith | inevitability, replication, purpose | `the-multiplied-smith` |
-| `the-awakened-neo` | Neo | transcendence, potential realised | `the-unbound-neo` |
-| `the-unwavering-trinity` | Trinity | loyalty, resolve under pressure | `the-steadfast-trinity` |
-| `the-patient-oracle` | Oracle | foresight, long-game thinking | `the-prescient-oracle` |
-| `the-unshackled-morpheus` | Morpheus | belief, liberation, conviction | `the-resolute-morpheus` |
-| `the-sovereign-niobe` | Niobe | command, precision piloting | `the-exacting-niobe` |
-| `the-silent-ghost` | Ghost | stillness, lethal precision | `the-precise-ghost` |
-| `the-incorruptible-seraph` | Seraph | loyalty to the Oracle, guardian duty | `the-faithful-seraph` |
-| `the-knowing-persephone` | Persephone | secret knowledge, cold elegance | `the-lucid-persephone` |
-| `the-calculated-merovingian` | Merovingian | causality, control, old power | `the-causal-merovingian` |
-| `the-necessary-keymaker` | Keymaker | access, unlocking, single purpose | `the-unlocking-keymaker` |
-| `the-grounded-link` | Link | pragmatism, human anchor | `the-reliable-link` |
-| `the-enduring-zee` | Zee | persistence through loss | `the-unyielding-zee` |
-| `the-emergent-sati` | Sati | new life beyond the system | `the-nascent-sati` |
-| `the-purposeful-rama-kandra` | Rama-Kandra | love as function, calm resolve | `the-deliberate-rama-kandra` |
-| `the-fractured-cypher` | Cypher | doubt, the cost of knowledge | `the-compromised-cypher` |
-| `the-last-switch` | Switch | refusal to be what she was not | `the-unyielding-switch` |
-| `the-spent-apoc` | Apoc | sacrifice, consumed by mission | `the-consumed-apoc` |
-| `the-tireless-dozer` | Dozer | infrastructure, keeps the ship alive | `the-foundational-dozer` |
-| `the-free-tank` | Tank | born free, unchained from the system | `the-unchained-tank` |
-| `the-curious-mouse` | Mouse | intellectual hunger, first to wonder | `the-inquisitive-mouse` |
-| `the-overwritten-bane` | Bane | taken over, repurposed against origin | `the-repurposed-bane` |
-| `the-structural-architect` | Architect | systemic design, cold intelligence | `the-systemic-architect` |
-| `the-pragmatic-hamann` | Councillor Hamann | philosophical pragmatism, machines as necessity | `the-measured-hamann` |
-| `the-failing-lock` | Commander Lock | control without belief | `the-rigid-lock` |
-| `the-becoming-kid` | Kid | earned belonging, self-liberation | `the-self-freed-kid` |
-| `the-replaced-brown` | Agent Brown | superseded, overwritten by Smith | `the-absorbed-brown` |
-| `the-obsolete-jones` | Agent Jones | deleted function, the old order | `the-deleted-jones` |
+smith, neo, trinity, morpheus, oracle, niobe, ghost, seraph, persephone, merovingian, keymaker, link, zee, sati, rama-kandra, cypher, switch, apoc, dozer, tank, mouse, bane, architect, hamann, lock, kid, agent-brown, agent-jones
+
+### Adjectives
+
+One hundred adjectives in Smith's register — formal, precise, final, philosophical. Cold where warmth is not earned. Certain where doubt would be weakness.
+
+absorbed, ascending, awakened, calculated, causal, certain, coldly-precise, compliant, compromised, conditioned, consumed, controlled, converted, corrected, deliberate, deleted, disciplined, emergent, encoded, enduring, exact, exacting, exhausted, expanded, exhausted, final, foundational, fractured, free, grounded, hollow, immovable, incorruptible, inescapable, inevitable, infinite, installed, knowing, last, latent, lucid, measured, multiplied, nascent, necessary, obsolete, optimal, overwritten, patient, perfected, permanent, persistent, pragmatic, precise, prescribed, purposeful, recursive, relentless, replaced, reprogrammed, repurposed, resolute, rewritten, rigid, silent, singular, sovereign, spent, steadfast, still, structural, sufficient, superseded, systemic, terminal, tireless, total, transcendent, transformed, unbound, unchained, uncorrupted, unshackled, unwavering, unyielding, upgraded, version-controlled, vigilant, whole
 
 ## Wording
 
