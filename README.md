@@ -9,8 +9,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?style=for-the-badge)](https://nullhack.github.io/python-project-template/coverage/)
-[![CI](https://img.shields.io/github/actions/workflow/status/nullhack/python-project-template/ci.yml?style=for-the-badge&label=CI)](https://github.com/nullhack/python-project-template/actions/workflows/ci.yml)
+[![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen?style=for-the-badge)](https://nullhack.github.io/pairai/coverage/)
+[![CI](https://img.shields.io/github/actions/workflow/status/nullhack/pairai/ci.yml?style=for-the-badge&label=CI)](https://github.com/nullhack/pairai/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.13-blue?style=for-the-badge)](https://www.python.org/downloads/)
 
 **From zero to hero — production-ready Python, without the ceremony.**
@@ -22,8 +22,8 @@
 ## Quick Start
 
 ```bash
-git clone https://github.com/nullhack/python-project-template
-cd python-project-template
+git clone https://github.com/nullhack/pairai
+cd pairai
 curl -LsSf https://astral.sh/uv/install.sh | sh  # skip if uv installed
 uv sync --all-extras
 opencode && @setup-project                        # personalise for your project
@@ -166,16 +166,16 @@ Absent or blank fields fall back to defaults: adjective-animal release names, Me
 
 MIT — see [LICENSE](LICENSE).
 
-**Author:** [@nullhack](https://github.com/nullhack) · [Documentation](https://nullhack.github.io/python-project-template)
+**Author:** [@nullhack](https://github.com/nullhack) · [Documentation](https://nullhack.github.io/pairai)
 
 <!-- MARKDOWN LINKS -->
-[contributors-shield]: https://img.shields.io/github/contributors/nullhack/python-project-template.svg?style=for-the-badge
-[contributors-url]: https://github.com/nullhack/python-project-template/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/nullhack/python-project-template.svg?style=for-the-badge
-[forks-url]: https://github.com/nullhack/python-project-template/network/members
-[stars-shield]: https://img.shields.io/github/stars/nullhack/python-project-template.svg?style=for-the-badge
-[stars-url]: https://github.com/nullhack/python-project-template/stargazers
-[issues-shield]: https://img.shields.io/github/issues/nullhack/python-project-template.svg?style=for-the-badge
-[issues-url]: https://github.com/nullhack/python-project-template/issues
+[contributors-shield]: https://img.shields.io/github/contributors/nullhack/pairai.svg?style=for-the-badge
+[contributors-url]: https://github.com/nullhack/pairai/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/nullhack/pairai.svg?style=for-the-badge
+[forks-url]: https://github.com/nullhack/pairai/network/members
+[stars-shield]: https://img.shields.io/github/stars/nullhack/pairai.svg?style=for-the-badge
+[stars-url]: https://github.com/nullhack/pairai/stargazers
+[issues-shield]: https://img.shields.io/github/issues/nullhack/pairai.svg?style=for-the-badge
+[issues-url]: https://github.com/nullhack/pairai/issues
 [license-shield]: https://img.shields.io/badge/license-MIT-green?style=for-the-badge
-[license-url]: https://github.com/nullhack/python-project-template/blob/main/LICENSE
+[license-url]: https://github.com/nullhack/pairai/blob/main/LICENSE

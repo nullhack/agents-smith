@@ -1,7 +1,7 @@
 [project]
-name = "python-project-template"
-version = "6.4.20260420"
-description = "Python template with some awesome tools to quickstart any Python project"
+name = "pairai"
+version = "0.1.20260420"
+description = "A project for people to pair program with AI"
 readme = "README.md"
 requires-python = ">=3.13"
 license = { file = "LICENSE" }
@@ -16,8 +16,8 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/nullhack/python-project-template"
-Documentation = "https://github.com/nullhack/python-project-template/tree/main/docs/api/"
+Repository = "https://github.com/nullhack/pairai"
+Documentation = "https://github.com/nullhack/pairai/tree/main/docs/api/"
 
 [project.optional-dependencies]
 dev = [
@@ -34,7 +34,7 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = ["app"]
+packages = ["pairai"]
 
 [tool.ruff.lint]
 ignore = []
@@ -106,11 +106,11 @@ exclude_lines = [
 ]
 
 [tool.taskipy.tasks]
-run = "python -m app"
+run = "python -m pairai"
 test-coverage = """\
 pytest \
   --cov-config=pyproject.toml \
-  --cov=app \
+  --cov=pairai \
   --cov-fail-under=100 \
   --tb=no
 """
@@ -121,7 +121,7 @@ pytest \
   --cov-config=pyproject.toml \
   --cov-report html:docs/coverage \
   --cov-report term:skip-covered \
-  --cov=app \
+  --cov=pairai \
   --cov-fail-under=100 \
   --hypothesis-show-statistics \
   --html=docs/tests/report.html \
@@ -134,13 +134,13 @@ ruff-check = "ruff check . --fix"
 ruff-format = "ruff format ."
 ruff-format-check = "ruff format . --check"
 lint = "task ruff-check && task ruff-format"
-doc-serve = "pdoc ./app --host localhost --port 8080"
+doc-serve = "pdoc ./pairai --host localhost --port 8080"
 doc-build = """\
-pdoc ./app -o docs/api --search && \
+pdoc ./pairai -o docs/api --search && \
 pytest \
   --cov-config=pyproject.toml \
   --cov-report html:docs/coverage \
-  --cov=app \
+  --cov=pairai \
   --html=docs/tests/report.html \
   --self-contained-html \
   -q \

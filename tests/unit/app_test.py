@@ -4,7 +4,7 @@ import pytest
 from hypothesis import example, given
 from hypothesis import strategies as st
 
-from app.__main__ import main
+from pairai.__main__ import main
 
 
 @given(verbosity=st.sampled_from(["DEBUG", "INFO", "WARNING", "ERROR", "CRITICAL"]))

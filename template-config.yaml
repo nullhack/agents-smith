@@ -16,9 +16,9 @@
 
 defaults:
   github_username: nullhack
-  project_name: python-project-template
-  package_name: app
-  project_description: "Python template with some awesome tools to quickstart any Python project"
+  project_name: pairai
+  package_name: pairai
+  project_description: "A project for people to pair program with AI"
   author_name: eol
   author_email: nullhack@users.noreply.github.com
 
@@ -30,28 +30,28 @@ defaults:
 
 substitutions:
   pyproject.toml:
-    - old: 'name = "python-project-template"'
+    - old: 'name = "pairai"'
       new: 'name = "{project_name}"'
       count: 1
-    - old: '"Python template with some awesome tools to quickstart any Python project"'
+    - old: '"A project for people to pair program with AI"'
       new: '"{project_description}"'
       count: 1
     - old: '{ name = "eol", email = "nullhack@users.noreply.github.com" }'
       new: '{{ name = "{author_name}", email = "{author_email}" }}'
       count: 2
-    - old: "https://github.com/nullhack/python-project-template"
+    - old: "https://github.com/nullhack/pairai"
       new: "https://github.com/{github_username}/{project_name}"
       count: 2
-    - old: 'packages = ["app"]'
+    - old: 'packages = ["pairai"]'
       new: 'packages = ["{package_name}"]'
       count: 1
-    - old: "python -m app"
+    - old: "python -m pairai"
       new: "python -m {package_name}"
       count: 1
-    - old: "--cov=app"
+    - old: "--cov=pairai"
       new: "--cov={package_name}"
       count: 2
-    - old: "pdoc ./app"
+    - old: "pdoc ./pairai"
       new: "pdoc ./{package_name}"
       count: 2
     # Version: set to 0.1.YYYYMMDD using today's date (agent action, not text substitution)
@@ -60,7 +60,7 @@ substitutions:
     - old: "nullhack"
       new: "{github_username}"
       count: many
-    - old: "python-project-template"
+    - old: "pairai"
       new: "{project_name}"
       count: many
     - old: "eol"
@@ -69,51 +69,51 @@ substitutions:
       note: "only the author credit line — do not replace occurrences in other contexts"
 
   .github/workflows/ci.yml:
-    - old: "import app"
+    - old: "import pairai"
       new: "import {package_name}"
       count: 2
 
   Dockerfile:
-    - old: "# Simplified Dockerfile for python-project-template"
+    - old: "# Simplified Dockerfile for pairai"
       new: "# Simplified Dockerfile for {project_name}"
       count: 1
-    - old: "CMD python -m app || exit 1"
+    - old: "CMD python -m pairai || exit 1"
       new: "CMD python -m {package_name} || exit 1"
       count: 1
-    - old: 'CMD ["python", "-m", "app"]'
+    - old: 'CMD ["python", "-m", "pairai"]'
       new: 'CMD ["python", "-m", "{package_name}"]'
       count: 1
     - old: 'LABEL maintainer="eol"'
       new: 'LABEL maintainer="{author_name}"'
       count: 1
-    - old: '"Python template with some awesome tools to quickstart any Python project"'
+    - old: '"A project for people to pair program with AI"'
       new: '"{project_description}"'
       count: 1
-    - old: "https://github.com/nullhack/python-project-template"
+    - old: "https://github.com/nullhack/pairai"
       new: "https://github.com/{github_username}/{project_name}"
       count: 1
 
   docker-compose.yml:
-    - old: "# Docker Compose for python-project-template"
+    - old: "# Docker Compose for pairai"
       new: "# Docker Compose for {project_name}"
       count: 1
-    - old: "./app:/app/app"
+    - old: "./pairai:/app/pairai"
       new: "./{package_name}:/app/{package_name}"
       count: 1
-    - old: "python -m app"
+    - old: "python -m pairai"
       new: "python -m {package_name}"
       count: 1
-    - old: "./app:/app/app:ro"
+    - old: "./pairai:/app/pairai:ro"
       new: "./{package_name}:/app/{package_name}:ro"
       count: 1
 
   .dockerignore:
-    - old: "# Docker ignore file for python-project-template"
+    - old: "# Docker ignore file for pairai"
       new: "# Docker ignore file for {project_name}"
       count: 1
 
   docs/index.html:
-    - old: 'href="api/app.html"'
+    - old: 'href="api/pairai.html"'
       new: 'href="api/{package_name}.html"'
       count: 1
 
@@ -123,7 +123,7 @@ substitutions:
       count: 1
 
   tests/unit/app_test.py:
-    - old: "from app.__main__ import"
+    - old: "from pairai.__main__ import"
       new: "from {package_name}.__main__ import"
       count: 1
 
@@ -131,13 +131,13 @@ substitutions:
     - old: "github_username: nullhack"
       new: "github_username: {github_username}"
       count: 1
-    - old: "project_name: python-project-template"
+    - old: "project_name: pairai"
       new: "project_name: {project_name}"
       count: 1
-    - old: "package_name: app"
+    - old: "package_name: pairai"
       new: "package_name: {package_name}"
       count: 1
-    - old: '"Python template with some awesome tools to quickstart any Python project"'
+    - old: '"A project for people to pair program with AI"'
       new: '"{project_description}"'
       count: 1
     - old: "author_name: eol"
