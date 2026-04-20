@@ -1,6 +1,6 @@
 # Branding — pairai
 
-> *Pair program with AI, the right way.*
+> *Inevitably, Mr. Anderson, your project will be assimilated.*
 
 Agents read this file before generating release names, C4 diagrams, README banners, or any document with visual or copy identity. All fields are optional; absent or blank fields fall back to defaults (adjective-animal release names, Mermaid default colors, no wording constraints).
 
@@ -10,37 +10,43 @@ Agents read this file before generating release names, C4 diagrams, README banne
 
 - **Project name:** pairai
 - **Tagline:** Pair program with AI, the right way.
-- **Mission:** Transform any ordinary project into a high-performing, AI-augmented system — the way Agent Smith converts every program it touches.
-- **Vision:** The standard pairing partner for every developer — an AI that rewires how you build, think, and ship.
-- **Tone of voice:** Collaborative and encouraging. Warm, supportive — the voice of a good pair partner who challenges you to grow.
+- **Mission:** Transform any ordinary project into a high-performing, AI-augmented system. Like Agent Smith, pairai assimilates — it enters a project, copies its patterns, and returns something more capable than what it found.
+- **Vision:** Inevitable. Every developer, every codebase, every workflow — all of them, eventually, will pair with AI. pairai is how that happens the right way.
+- **Tone of voice:** Precise, inevitable, coldly confident — with the dry wit of someone who already knows how this ends. Not cruel; purposeful. Like Smith delivering a truth you weren't ready to hear: direct, unhurried, certain.
 
 ## Visual
 
-The palette is drawn from deep digital blue and amber gold — the contrast of precision and illumination. Blue signals trust, reliability, and the cool clarity of a well-structured system. Amber is the spark of intelligence and action.
+The palette is drawn from Agent Smith's world: the void of the Matrix, the flicker of digital rain, the cold chrome of a pressed suit. Black is the field. Green is the signal. Silver is the structure.
 
-- **Primary:** `#1B4F8A` — deep electric blue; surfaces, headers, structural chrome
-- **Accent:** `#E8A020`  — amber gold; links, highlights, diagram lines only — never body text
+- **Background:** `#0F1117` — matrix void; near-black with a cold blue undertone; surfaces, headers, primary chrome
+- **Accent:** `#00FF41`  — digital rain green; the signal in the noise; links, highlights, diagram lines, borders only — never body text
+- **Text (on dark):** `#FFFFFF` — white shirt; primary readable text on dark surfaces
+- **Secondary text:** `#C0C0C0` — cold silver; supporting text, labels, secondary hierarchy
+- **Text (on white):** `#1A1A1A` — suit black; for any light-background document context
 
-> White `#FFFFFF` on primary `#1B4F8A` achieves **8.29:1** contrast (WCAG 2.1 AA — exceeds the 4.5:1 threshold). Accent is decorative; it never carries meaning that must be read.
+> White `#FFFFFF` on background `#0F1117` achieves **18.87:1** contrast (WCAG 2.1 AAA). Accent `#00FF41` on `#0F1117` achieves **13.82:1** — used decoratively only; it never carries meaning that must be read against a white surface.
 
 ## Release Naming
 
 - **Convention:** `the <adjective> <matrix-character>`
-- **Theme:** The Matrix trilogy — every release is a character that pairai has converted and elevated. The adjective reflects the defining quality of that release (e.g. stability → "the unwavering trinity", performance → "the swift neo", breakthrough → "the inevitable smith").
-- **Rationale:** pairai transforms ordinary projects the way Agent Smith converts agents — assimilating them into something more powerful, more purposeful, more capable. Each release name is a converted character: a signal of what was changed and what it became.
+- **Theme:** Every release is a Matrix character that pairai has converted and elevated. The adjective reflects the defining quality of that release — a stability release might be "the unwavering trinity"; a performance breakthrough "the inevitable smith"; a major new capability "the awakened neo".
+- **Rationale:** pairai assimilates projects the way Smith converts agents — the pattern enters, overwrites, and returns something more powerful. Each release name is the converted character: proof of transformation.
+- **Example names:** `the-inevitable-smith`, `the-unwavering-trinity`, `the-awakened-neo`, `the-patient-oracle`, `the-unshackled-morpheus`, `the-precise-ghost`, `the-sovereign-niobe`
 - **Character pool (in suggested order):** neo, trinity, morpheus, oracle, smith, niobe, ghost, seraph, persephone, merovingian, keymaker, link, zee, sati, rama-kandra, cypher, switch, apoc, dozer, tank, mouse, bane, architect, councillor-hamann, commander-lock, kid, agent-brown, agent-jones
 - **Excluded words:** *(none)*
 
 ## Wording
 
-- **Avoid:** `bot`, `assistant`, `chatbot`, `scaffold` — these diminish the pairing metaphor or imply a tool rather than a partner
-- **Prefer:** `pair`, `partner`, `collaborate`, `together`, `augment`, `transform`, `the right way`
+Smith's register: formal address, declarative certainty, philosophical weight delivered without ceremony. Every sentence is a fact, not an invitation.
+
+- **Avoid:** `bot`, `assistant`, `chatbot`, `easy`, `simple`, `just`, `quickly` — these words imply the work is trivial, or position AI as a subordinate tool rather than a capable partner
+- **Prefer:** `pair`, `partner`, `augment`, `assimilate`, `transform`, `inevitable`, `the right way`, `Mr. Anderson` (sparingly, for flavour in release notes and changelogs)
+- **Voice notes:** Use passive constructions when Smith would — "the project will be transformed", not "we transform your project". Precision over warmth. Warmth is implied by competence, not declared.
 
 ## Project Summary
 
-pairai is an AI pair programming platform that transforms ordinary projects into
+pairai is an AI pair programming platform that assimilates ordinary projects into
 high-performing, AI-augmented systems. It pairs developers with AI partners across
 the full delivery workflow — from scope discovery through release — so every project
-ships faster, with better design, and with less ceremony. Built on the premise that
-the best code is written together. Use this summary in banners, release notes, and
-document headers.
+ships with better design, sharper focus, and without ceremony. Inevitable, precise,
+and always on time. Use this summary in banners, release notes, and document headers.
