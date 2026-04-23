@@ -18,7 +18,7 @@ The `cli-entrypoint` feature requires the `--version` flag to print the applicat
 
 ## Decision
 
-Use `importlib.metadata.version("temple8")` at runtime.
+Use `importlib.metadata.version("smith")` at runtime.
 
 ## Reason
 
@@ -28,7 +28,7 @@ Use `importlib.metadata.version("temple8")` at runtime.
 
 - **Hardcoded string**: violates the explicit feature rule; drifts from `pyproject.toml` over time.
 - **Read `pyproject.toml` at runtime with `tomllib`**: works, but requires file path resolution and adds I/O; `importlib.metadata` is simpler and the stdlib-blessed approach.
-- **`app.__version__` constant in `__init__.py`**: requires a second source of truth; still needs `importlib.metadata` or hardcoding to populate it — one extra indirection with no benefit.
+- **`smith.__version__` constant in `__init__.py`**: requires a second source of truth; still needs `importlib.metadata` or hardcoding to populate it — one extra indirection with no benefit.
 
 ## Consequences
 

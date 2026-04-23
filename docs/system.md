@@ -1,4 +1,4 @@
-# System Overview: temple8
+# System Overview: agents-smith
 
 > Current-state description of the production system.
 > Rewritten by the system-architect at Step 2 for each feature cycle.
@@ -8,10 +8,9 @@
 
 ## Summary
 
-temple8 is a Python project template that gives engineers a production-ready skeleton with zero
-overhead. It ships with a single demonstration feature — a CLI entrypoint (`python -m app`) —
+agents-smith is a self-cloning agent system that transforms legacy code to mirror live source code and enforce best-practice software patterns. It ships with a single demonstration feature — a CLI entrypoint (`python -m smith`) —
 that exercises the full five-step delivery workflow end-to-end. The system is a single Python
-package (`app`) with no runtime dependencies beyond the Python stdlib.
+package (`smith`) with no runtime dependencies beyond the Python stdlib.
 
 ---
 
@@ -27,19 +26,19 @@ package (`app`) with no runtime dependencies beyond the Python stdlib.
 
 | System | Kind | Description |
 |--------|------|-------------|
-| `temple8` | Internal | Production-ready Python project template with CLI entrypoint |
+| `agents-smith` | Internal | Self-cloning agents that transform legacy code and enforce best-practice patterns |
 
 ### Interactions
 
 | Interaction | Behaviour | Technology |
 |-------------|-----------|------------|
-| Developer → temple8 | Runs `python -m app --help` / `--version` | CLI / subprocess |
+| Developer → agents-smith | Runs `python -m smith --help` / `--version` | CLI / subprocess |
 
 ---
 
 ## Container
 
-### Boundary: temple8
+### Boundary: agents-smith
 
 | Container | Technology | Responsibility |
 |-----------|------------|----------------|
@@ -49,7 +48,7 @@ package (`app`) with no runtime dependencies beyond the Python stdlib.
 
 | Interaction | Behaviour |
 |-------------|-----------|
-| Developer → CLI Entrypoint | Invokes via `python -m app` |
+| Developer → CLI Entrypoint | Invokes via `python -m smith` |
 
 ---
 
@@ -57,8 +56,8 @@ package (`app`) with no runtime dependencies beyond the Python stdlib.
 
 | Module | Responsibility |
 |--------|----------------|
-| `app/__main__.py` | CLI entrypoint: parses `--help` and `--version` flags; reads version from package metadata |
-| `app/__init__.py` | Package marker; no public API |
+| `smith/__main__.py` | CLI entrypoint: parses `--help` and `--version` flags; reads version from package metadata |
+| `smith/__init__.py` | Package marker; no public API |
 
 ---
 
@@ -68,7 +67,7 @@ package (`app`) with no runtime dependencies beyond the Python stdlib.
 
 | Context | Responsibility | Key Modules |
 |---------|----------------|-------------|
-| `CLI` | Expose the application as a command-line tool; parse flags; print help and version | `app/__main__.py` |
+| `CLI` | Expose the application as a command-line tool; parse flags; print help and version | `smith/__main__.py` |
 
 ### Entities
 
@@ -94,14 +93,14 @@ package (`app`) with no runtime dependencies beyond the Python stdlib.
 
 | Module | Depends On |
 |--------|------------|
-| `app/__main__.py` | `argparse` (stdlib), `importlib.metadata` (stdlib) |
+| `smith/__main__.py` | `argparse` (stdlib), `importlib.metadata` (stdlib) |
 
 ---
 
 ## Active Constraints
 
 - Zero new runtime dependencies — all CLI and metadata functionality uses Python stdlib only
-- All production code lives in `app/__main__.py` — no new source files
+- All production code lives in `smith/__main__.py` — no new source files
 - Version format is calver (`major.minor.YYYYMMDD`); tests must not assume semver
 
 ---
@@ -123,8 +122,8 @@ See `docs/adr/` for the full decision record.
 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
-| `project.name` | string | `"temple8"` | Application name; read from installed package metadata |
-| `project.description` | string | `"Python template with some awesome tools to quickstart any Python project"` | Package description from `pyproject.toml`; set as `argparse` description |
+| `project.name` | string | `"smith"` | Application name; read from installed package metadata |
+| `project.description` | string | `"Self-cloning agents that transform legacy code to mirror live source code and enforce best-practice software patterns"` | Package description from `pyproject.toml`; set as `argparse` description |
 | `project.version` | string | `"7.2.20260423"` | Calver version; read at runtime via `importlib.metadata` |
 
 ---

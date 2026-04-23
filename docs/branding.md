@@ -1,56 +1,63 @@
-# Branding — temple8
+# Branding — smith
 
-> *From zero to hero — production-ready Python, without the ceremony.*
+> *Inevitably, Mr. Anderson, your project will be assimilated.*
 
 Agents read this file before generating release names, C4 diagrams, README banners, or any document with visual or copy identity. All fields are optional; absent or blank fields fall back to defaults (adjective-animal release names, Mermaid default colors, no wording constraints).
-
-**Ownership**: The stakeholder owns this file. The designer proposes changes (color palettes, visual assets, wording updates); the stakeholder approves them. No other agent edits this file.
 
 ---
 
 ## Identity
 
-- **Project name:** temple8
-- **Tagline:** From zero to hero — production-ready Python, without the ceremony.
-- **Mission:** Eliminate overhead so engineers ship features, not setup.
-- **Vision:** The standard starting point for any serious Python project — the bedrock every Python engineer reaches for first.
-- **Tone of voice:** Direct, precise, minimal. The Greeks did not decorate the Parthenon with apologies. Neither do we.
+- **Project name:** smith
+- **Tagline:** Pair program with AI, the right way.
+- **Mission:** Transform any ordinary project into a high-performing, AI-augmented system. Like Agent Smith, smith assimilates — it enters a project, copies its patterns, and returns something more capable than what it found.
+- **Vision:** Inevitable. Every developer, every codebase, every workflow — all of them, eventually, will pair with AI. smith is how that happens the right way.
+- **Tone of voice:** Precise, inevitable, coldly confident — with the dry wit of someone who already knows how this ends. Not cruel; purposeful. Like Smith delivering a truth you weren't ready to hear: direct, unhurried, certain.
 
 ## Visual
 
-The palette is drawn from classical marble, parchment, and gold — materials that have carried ideas for millennia. Every colour choice serves legibility first; decoration is secondary.
+The palette is drawn from Agent Smith's world: the void of the Matrix, the flicker of digital rain, the cold chrome of a pressed suit. Black is the field. Green is the signal. Silver is the structure.
 
-- **Background/parchment:** `#faf7f2` → `#ede8e0`  — warm off-white, the surface on which ideas are set down
-- **Primary text:** `#5c3d1e` → `#3b2410`           — deep warm brown, the ink that endures
-- **Accent/gold:** `#c9a84c` → `#e8c96a`            — antique gold, used for borders and structural lines only — never body text
-- **Secondary/blue:** `#7baabf` → `#4a7a96`         — Aegean steel blue, for labels and secondary hierarchy
-- **Stone/marble:** `#f0ece4` → `#c8c0b8`           — the load-bearing colour; columns, shapes, structural chrome
-- **Logo:** `docs/assets/logo.svg`
-- **Banner:** `docs/assets/banner.svg`
+- **Background:** `#0F1117` — matrix void; near-black with a cold blue undertone; surfaces, headers, primary chrome
+- **Accent:** `#00FF41`  — digital rain green; the signal in the noise; links, highlights, diagram lines, borders only — never body text
+- **Text (on dark):** `#FFFFFF` — white shirt; primary readable text on dark surfaces
+- **Secondary text:** `#C0C0C0` — cold silver; supporting text, labels, secondary hierarchy
+- **Text (on white):** `#1A1A1A` — suit black; for any light-background document context
 
-> Deep brown `#3b2410` on parchment `#faf7f2` achieves >10:1 contrast (WCAG AAA). Gold is decorative; it never carries meaning that must be read.
-
-### Logo
-
-Greek temple façade — pediment, four columns, three-step stylobate. A horizontal lintel (crossbeam) spans between the two central columns at mid-height. The void above the lintel and the void below it, framed by the entablature and stylobate, together imply an 8 — structural, not decorative. Transparent background. Stone-light `#f0ece4` / `#c8c0b8` fill, `#5c3d1e` brown outlines.
-
-**8-shape shadow consistency**: The four shadow edges defining the two loops of the 8 (ceiling, lintel-top, lintel-bottom, floor) are equal in height (2 px each) so both loops appear the same size. The ceiling and floor shadows use `#5c3d1e` at 0.45 opacity; the lintel has a bottom-only border (no full outline) with an underside shadow (`#5c3d1e` at 0.38) and a subtle top shadow strip (`#a09890` at 0.2 opacity, matching the column shadow style).
-
-### Banner
-
-Warm parchment `#faf7f2` background. Left zone: temple mark (same geometry as logo, scaled). Right zone: `TEMPLE·VIII` typeset with engraved two-layer effect — front layer `#f0ece4` (stone-light), shadow layer `#3b2410` (deep brown) offset +3px right / +4px down. Middle dot `·` in gold `#c9a84c`. Gold accent rules above and below the title. Gold top and bottom border bands. Vertical gold divider separating temple from title zone. No subtitle.
+> White `#FFFFFF` on background `#0F1117` achieves **18.87:1** contrast (WCAG 2.1 AAA). Accent `#00FF41` on `#0F1117` achieves **13.82:1** — used decoratively only; it never carries meaning that must be read against a white surface.
 
 ## Release Naming
 
-- **Convention:** `adjective-greek-figure`
-- **Theme:** Greek antiquity — philosophers, heroes, gods, mythological figures. Every release name should read like an epithet: something a figure *earned* through their defining quality (e.g. "Resolute Athena", "Precise Pythagoras", "Luminous Hypatia").
-- **Rationale:** Ancient Greece is the origin of the intellectual tradition that underpins Western civilisation — democracy, systematic philosophy, formal logic, and scientific reasoning all trace their lineage to the Greek city-states. Plato and Aristotle invented political philosophy as a genre; Aristotle formalised logic and ethics; the Pythagoreans established that abstract reasoning could describe the physical world. This template stands on the same premise: rigorous method, applied from the beginning, produces something worth building on. The Greek figure in each release name is not decoration — it is a statement about what kind of work this is.
+- **Convention:** `the <adjective> <matrix-character>`
+- **Theme:** Every release is a Matrix character that pairai has converted and elevated. The adjective is chosen to echo Smith's register — cold precision, philosophical weight, declarative force — while reflecting the defining quality of that release (stability, performance, new capability, etc.).
+- **Rationale:** pairai assimilates projects the way Smith converts agents — the pattern enters, overwrites, and returns something more powerful. Each release name is the converted character: proof of transformation.
+- **Composition:** Select one adjective and one character. Any combination is valid. Prefer pairings where the adjective illuminates something true about the release — a stability release might reach for `unwavering` or `foundational`; a breaking change might call for `fractured` or `overwritten`; a landmark might demand `inevitable`.
 - **Excluded words:** *(none)*
+
+### Characters
+
+All named characters from the Matrix trilogy, in order of narrative weight:
+
+smith, neo, trinity, morpheus, oracle, niobe, ghost, seraph, persephone, merovingian, keymaker, link, zee, sati, rama-kandra, cypher, switch, apoc, dozer, tank, mouse, bane, architect, hamann, lock, kid, agent-brown, agent-jones
+
+### Adjectives
+
+One hundred adjectives in Smith's register — formal, precise, final, philosophical. Cold where warmth is not earned. Certain where doubt would be weakness.
+
+absorbed, ascending, awakened, calculated, causal, certain, coldly-precise, compliant, compromised, conditioned, consumed, controlled, converted, corrected, deliberate, deleted, disciplined, emergent, encoded, enduring, exact, exacting, exhausted, expanded, exhausted, final, foundational, fractured, free, grounded, hollow, immovable, incorruptible, inescapable, inevitable, infinite, installed, knowing, last, latent, lucid, measured, multiplied, nascent, necessary, obsolete, optimal, overwritten, patient, perfected, permanent, persistent, pragmatic, precise, prescribed, purposeful, recursive, relentless, replaced, reprogrammed, repurposed, resolute, rewritten, rigid, silent, singular, sovereign, spent, steadfast, still, structural, sufficient, superseded, systemic, terminal, tireless, total, transcendent, transformed, unbound, unchained, uncorrupted, unshackled, unwavering, unyielding, upgraded, version-controlled, vigilant, whole
 
 ## Wording
 
-Every word carries weight. The Greeks had a name for ornament that obscures meaning: *kenophonia* — empty noise.
+Smith's register: formal address, declarative certainty, philosophical weight delivered without ceremony. Every sentence is a fact, not an invitation.
 
-- **Avoid:** `easy`, `simple`, `just`, `quick`, `scaffold`, `superseded`, `boilerplate`
-- **Prefer:** `minimal`, `precise`, `production-ready`, `rigorous`, `from zero to hero`
+- **Avoid:** `bot`, `assistant`, `chatbot`, `easy`, `simple`, `just`, `quickly` — these words imply the work is trivial, or position AI as a subordinate tool rather than a capable partner
+- **Prefer:** `pair`, `partner`, `augment`, `assimilate`, `transform`, `inevitable`, `the right way`, `Mr. Anderson` (sparingly, for flavour in release notes and changelogs)
+- **Voice notes:** Use passive constructions when Smith would — "the project will be transformed", not "we transform your project". Precision over warmth. Warmth is implied by competence, not declared.
 
+## Project Summary
+
+smith is an AI pair programming platform that assimilates ordinary projects into
+high-performing, AI-augmented systems. It pairs developers with AI partners across
+the full delivery workflow — from scope discovery through release — so every project
+ships with better design, sharper focus, and without ceremony. Inevitable, precise,
+and always on time. Use this summary in banners, release notes, and document headers.

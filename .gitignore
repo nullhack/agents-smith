@@ -170,3 +170,9 @@ cython_debug/
 #.idea/
 .mutmut-cache
 # Trigger CI run to verify linting fixes
+
+# OpenCode / agent workspace
+.opencode/
+agents/
+work/
+flow/

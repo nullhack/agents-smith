@@ -1,7 +1,7 @@
 [project]
-name = "temple8"
+name = "smith"
 version = "7.2.20260423"
-description = "Python template with some awesome tools to quickstart any Python project"
+description = "Self-cloning agents that transform legacy code to mirror live source code and enforce best-practice software patterns"
 readme = "README.md"
 requires-python = ">=3.13"
 license = { file = "LICENSE" }
@@ -14,8 +14,8 @@ maintainers = [
 dependencies = []
 
 [project.urls]
-Repository = "https://github.com/nullhack/temple8"
-Documentation = "https://github.com/nullhack/temple8/tree/main/docs/api/"
+Repository = "https://github.com/nullhack/agents-smith"
+Documentation = "https://github.com/nullhack/agents-smith/tree/main/docs/api/"
 
 [project.optional-dependencies]
 dev = [
@@ -32,7 +32,7 @@ dev = [
 ]
 
 [tool.setuptools]
-packages = ["app"]
+packages = ["smith"]
 
 [tool.ruff.lint]
 ignore = []
@@ -105,11 +105,11 @@ exclude_lines = [
 ]
 
 [tool.taskipy.tasks]
-run = "python -m app"
+run = "python -m smith"
 test-coverage = """\
 pytest \
   --cov-config=pyproject.toml \
-  --cov=app \
+  --cov=smith \
   --tb=no
 """
 test-build = """\
@@ -119,7 +119,7 @@ pytest \
   --cov-config=pyproject.toml \
   --cov-report html:docs/coverage \
   --cov-report term:skip-covered \
-  --cov=app \
+  --cov=smith \
   --hypothesis-show-statistics \
   --html=docs/tests/report.html \
   --self-contained-html \
@@ -131,19 +131,19 @@ ruff-check = "ruff check . --fix"
 ruff-format = "ruff format ."
 ruff-format-check = "ruff format . --check"
 lint = "task ruff-check && task ruff-format"
-doc-serve = "pdoc ./app --host localhost --port 8080"
+doc-serve = "pdoc ./smith --host localhost --port 8080"
 doc-build = """\
-pdoc ./app -o docs/api --search && \
+pdoc ./smith -o docs/api --search && \
 pytest \
   --cov-config=pyproject.toml \
   --cov-report html:docs/coverage \
-  --cov=app \
+  --cov=smith \
   --html=docs/tests/report.html \
   --self-contained-html \
   -q \
 """
 doc-publish = "task doc-build && ghp-import -n -p -f docs"
-static-check = "pyright app tests"
+static-check = "pyright smith tests"
 assign-ids = "python scripts/assign_ids.py"
 release-check = "python scripts/check_version.py && task lint && task static-check && task test && task doc-build"
 

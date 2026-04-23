@@ -1,4 +1,4 @@
-# Glossary: temple8
+# Glossary: agents-smith
 
 > Living glossary of domain terms used in this project.
 > Written and maintained by the product-owner during Step 1 discovery.
@@ -99,11 +99,11 @@ Entries are sorted alphabetically.
 
 ## CLI Entrypoint
 
-**Definition:** The `app/__main__.py` module that wires the application's command-line interface, exposing `--help` and `--version` flags via Python's stdlib `argparse`.
+**Definition:** The `smith/__main__.py` module that wires the application's command-line interface, exposing `--help` and `--version` flags via Python's stdlib `argparse`.
 
 **Aliases:** entry point, main module, CLI entry
 
-**Example:** "Running `python -m app --version` invokes the CLI entrypoint and prints `temple8 7.2.20260423`."
+**Example:** "Running `python -m smith --version` invokes the CLI entrypoint and prints `smith 7.2.20260423`."
 
 **Source:** 2026-04-22 — Session 1; feature `cli-entrypoint`
 
@@ -175,7 +175,7 @@ Entries are sorted alphabetically.
 
 **Aliases:** project metadata, distribution metadata
 
-**Example:** "`importlib.metadata.version('temple8')` returns `7.2.20260423` at runtime, matching the `version` field in `pyproject.toml`."
+**Example:** "`importlib.metadata.version('smith')` returns `7.2.20260423` at runtime, matching the `version` field in `pyproject.toml`."
 
 **Source:** 2026-04-22 — Session 1 (Q10, Q11); feature `cli-entrypoint`
 
@@ -235,7 +235,7 @@ Entries are sorted alphabetically.
 
 **Aliases:** SA, architect, technical lead
 
-**Example:** "The system-architect reads `cli-entrypoint.feature`, writes domain stubs in `app/__main__.py`, and records the argparse decision as an ADR."
+**Example:** "The system-architect reads `cli-entrypoint.feature`, writes domain stubs in `smith/__main__.py`, and records the argparse decision as an ADR."
 
 **Source:** template — this project's workflow
 
