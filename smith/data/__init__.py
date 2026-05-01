@@ -1,0 +1,1 @@
+"""Bundled template data package."""
