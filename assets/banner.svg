@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-label="smith banner">
+
+  <!--
+    GEOMETRY NOTES
+    ──────────────
+    Canvas: 1200 × 300. Target wordmark centre: x=600.
+
+    S scale: 3.2
+      Content width  = 60×3.2 = 192px
+      Content height = 68×3.2 = 218px
+      Bottom fixed at y=245 → group_origin_y = 245 - 84×3.2 = -24
+
+    "mith" font-size=224, font-weight=700, text-anchor=start.
+      Measured width at this size ≈ 490px (conservative).
+
+    Total wordmark = 192 (S) + 8 (gap) + 490 (mith) = 690px
+    Left edge = 600 - 690/2 = 600 - 345 = 255
+    S content left  x = 255
+    S group_origin_x = 255 - 20×3.2 = 255 - 64 = 191
+    S content right x = 191 + 80×3.2 = 191 + 256 = 447
+    "mith" starts at x = 447 + 8 = 455
+    "mith" ends at  x ≈ 455 + 490 = 945
+    Wordmark centre ≈ (255+945)/2 = 600 ✓
+
+    Tagline centred at x=600.
+  -->
+
+  <!-- Background: matrix void -->
+  <rect width="1200" height="300" fill="#0F1117"/>
+
+  <!-- S logo mark -->
+  <g transform="translate(151,-24) scale(3.2)">
+    <rect x="20" y="16" width="60" height="8"  fill="#00FF41" opacity="0.65"/>
+    <rect x="20" y="32" width="38" height="8"  fill="#00FF41" opacity="0.85"/>
+    <rect x="20" y="44" width="60" height="12" fill="#00FF41"/>
+    <rect x="42" y="60" width="38" height="8"  fill="#00FF41" opacity="0.85"/>
+    <rect x="20" y="76" width="60" height="8"  fill="#00FF41" opacity="0.65"/>
+  </g>
+
+  <!-- "mith" — fixed width 491px so geometry is exact -->
+  <text
+    x="415" y="245"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="224"
+    font-weight="700"
+    fill="#FFFFFF"
+    textLength="491"
+    lengthAdjust="spacing"
+    text-anchor="start">mith</text>
+
+  <!-- Tagline — centred on canvas -->
+  <text
+    x="680" y="280"
+    font-family="system-ui, -apple-system, sans-serif"
+    font-size="18"
+    font-weight="400"
+    fill="#C0C0C0"
+    letter-spacing="5"
+    text-anchor="middle">Pair program with AI, the right way.</text>
+
+</svg>

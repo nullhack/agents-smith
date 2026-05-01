@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="smith logo">
+
+  <!-- Background: matrix void -->
+  <rect width="100" height="100" fill="#0F1117"/>
+
+  <!--
+    S lettermark carved from 5 horizontal scan-line bars.
+    Negative space between the bars reads as the curves of an S.
+
+    Bar 1  y=16-24  full width  20-80   top cap           opacity 0.65
+    gap    y=24-32  right open          top-right concavity
+    Bar 2  y=32-40  left half   20-58   upper-left arm    opacity 0.85
+    gap    y=40-44  right open          top throat
+    Bar 3  y=44-56  full width  20-80   waist / spine     opacity 1.0
+    gap    y=56-60  left open           bottom throat
+    Bar 4  y=60-68  right half  42-80   lower-right arm   opacity 0.85
+    gap    y=68-76  left open           bottom-left concavity
+    Bar 5  y=76-84  full width  20-80   bottom cap        opacity 0.65
+  -->
+
+  <!-- Bar 1: top cap -->
+  <rect x="20" y="16" width="60" height="8" fill="#00FF41" opacity="0.65"/>
+
+  <!-- Bar 2: upper-left arm -->
+  <rect x="20" y="32" width="38" height="8" fill="#00FF41" opacity="0.85"/>
+
+  <!-- Bar 3: waist — brightest bar, the spine -->
+  <rect x="20" y="44" width="60" height="12" fill="#00FF41"/>
+
+  <!-- Bar 4: lower-right arm -->
+  <rect x="42" y="60" width="38" height="8" fill="#00FF41" opacity="0.85"/>
+
+  <!-- Bar 5: bottom cap -->
+  <rect x="20" y="76" width="60" height="8" fill="#00FF41" opacity="0.65"/>
+
+</svg>

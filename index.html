@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>agents-smith — Documentation</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --void:          #0F1117;
+      --void-light:    #181B24;
+      --void-mid:      #1E2130;
+      --border:        #2A2D3A;
+      --border-light:  #363A4A;
+      --text:          #E0E0E8;
+      --text-muted:    #8888A0;
+      --green:         #00FF41;
+      --green-dim:     #00CC33;
+      --green-glow:    rgba(0,255,65,0.12);
+      --silver:        #C0C0C0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "SF Mono", "Fira Code", "Cascadia Code", "Consolas", monospace;
+      background: var(--void);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    body::before, body::after {
+      content: "";
+      display: block;
+      height: 2px;
+      background: linear-gradient(90deg, transparent 0%, var(--green) 50%, transparent 100%);
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      padding: 2.5rem 3rem 1.5rem;
+      border-bottom: 1px solid var(--border);
+      max-width: 960px;
+      margin: 0 auto;
+    }
+    .logo-wrap svg { width: 56px; height: 56px; }
+    .header-text h1 {
+      font-size: 1.6rem;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      color: var(--text);
+    }
+    .header-text h1 span {
+      color: var(--green);
+    }
+    .header-text p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    main {
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 2.5rem 3rem 4rem;
+    }
+
+    .section-title {
+      font-size: 0.65rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 1rem;
+      padding-bottom: 0.4rem;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .section-title::before {
+      content: "█";
+      font-size: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .role-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 0.15rem;
+    }
+
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.25rem;
+      margin-bottom: 3rem;
+    }
+    a.doc-card {
+      display: block;
+      background: var(--void-light);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--green);
+      border-radius: 4px;
+      padding: 1.5rem 1.25rem;
+      text-decoration: none;
+      color: inherit;
+      transition: border-top-color 0.15s, box-shadow 0.15s, background 0.15s;
+    }
+    a.doc-card:hover {
+      border-top-color: var(--green-dim);
+      background: var(--void-mid);
+      box-shadow: 0 0 20px var(--green-glow);
+    }
+    .doc-card-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 0.4rem;
+    }
+    .doc-card-title {
+      font-size: 1.0rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.35rem;
+    }
+    .doc-card-desc {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem 3rem;
+      max-width: 960px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+    footer a { color: var(--green); text-decoration: none; }
+    footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 600px) {
+      header, main, footer { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .docs-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo-wrap">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="smith logo">
+        <rect width="100" height="100" fill="#0F1117"/>
+        <rect x="20" y="16" width="60" height="8" fill="#00FF41" opacity="0.65"/>
+        <rect x="20" y="32" width="38" height="8" fill="#00FF41" opacity="0.85"/>
+        <rect x="20" y="44" width="60" height="12" fill="#00FF41"/>
+        <rect x="42" y="60" width="38" height="8" fill="#00FF41" opacity="0.85"/>
+        <rect x="20" y="76" width="60" height="8" fill="#00FF41" opacity="0.65"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <h1>AGENTS<span>·</span>SMITH</h1>
+      <p>AI-assisted software delivery with flow-based agent orchestration.</p>
+    </div>
+  </header>
+
+  <main>
+
+    <p class="section-title">Stakeholder</p>
+    <div class="docs-grid">
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/product_definition.md">
+        <div class="doc-card-label">Product</div>
+        <div class="doc-card-title">Product Definition</div>
+        <div class="doc-card-desc">What the product is, who it's for, and scope boundaries</div>
+      </a>
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/glossary.md">
+        <div class="doc-card-label">Language</div>
+        <div class="doc-card-title">Glossary</div>
+        <div class="doc-card-desc">Living domain glossary — append-only, source-traced definitions</div>
+      </a>
+    </div>
+
+    <p class="section-title">Architect</p>
+    <div class="docs-grid">
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/system.md">
+        <div class="doc-card-label">Architecture</div>
+        <div class="doc-card-title">System Overview</div>
+        <div class="doc-card-desc">Current-state snapshot — domain model, context/container tables, ADR index</div>
+      </a>
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/technical_design.md">
+        <div class="doc-card-label">Architecture</div>
+        <div class="doc-card-title">Technical Design</div>
+        <div class="doc-card-desc">Architectural style, stack, module structure, contracts, and C4 diagrams</div>
+      </a>
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/context_map.md">
+        <div class="doc-card-label">Architecture</div>
+        <div class="doc-card-title">Context Map</div>
+        <div class="doc-card-desc">Bounded context relationships, integration points, and anti-corruption layers</div>
+      </a>
+      <a class="doc-card" href="https://github.com/nullhack/agents-smith/blob/main/docs/spec/domain_model.md">
+        <div class="doc-card-label">Architecture</div>
+        <div class="doc-card-title">Domain Model</div>
+        <div class="doc-card-desc">Entities, relationships, and aggregate boundaries</div>
+      </a>
+    </div>
+
+    <p class="section-title">Engineer</p>
+    <div class="docs-grid">
+      <a class="doc-card" href="api/smith.html">
+        <div class="doc-card-label">Reference</div>
+        <div class="doc-card-title">API Docs</div>
+        <div class="doc-card-desc">Auto-generated from source docstrings</div>
+      </a>
+      <a class="doc-card" href="coverage/index.html">
+        <div class="doc-card-label">Quality</div>
+        <div class="doc-card-title">Coverage Report</div>
+        <div class="doc-card-desc">Line-by-line test coverage</div>
+      </a>
+      <a class="doc-card" href="tests/report.html">
+        <div class="doc-card-label">Quality</div>
+        <div class="doc-card-title">Test Report</div>
+        <div class="doc-card-desc">Full pytest run — results, durations, and pass/fail breakdown</div>
+      </a>
+    </div>
+
+  </main>
+
+  <footer>
+    <span>Generated documentation</span>
+    <span>agents-smith &nbsp;·&nbsp; <a href="https://github.com/nullhack/agents-smith">github.com/nullhack/agents-smith</a></span>
+  </footer>
+
+</body>
+</html>
