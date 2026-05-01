@@ -1,1 +1,1 @@
-"""Application package."""
+"""Smith — connect AI agent configurations to any project."""

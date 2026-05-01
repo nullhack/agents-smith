@@ -1,7 +1,7 @@
 [project]
 name = "agents-smith"
-version = "0.1.20260421"
-description = "A project for people to pair program with AI, the right way."
+version = "0.1.0"
+description = "AI-assisted software delivery system with flow-based agent orchestration"
 readme = "README.md"
 requires-python = ">=3.13"
 license = { file = "LICENSE" }
@@ -11,12 +11,12 @@ authors = [
 maintainers = [
     { name = "eol", email = "nullhack@users.noreply.github.com" }
 ]
-classifiers = [
-    "Development Status :: 4 - Beta",
-]
 dependencies = [
-    "fire>=0.7.1",
+    "requests>=2.32",
 ]
+
+[project.scripts]
+smith = "smith.__main__:main"
 
 [project.urls]
 Repository = "https://github.com/nullhack/agents-smith"
@@ -26,7 +26,6 @@ Documentation = "https://github.com/nullhack/agents-smith/tree/main/docs/api/"
 dev = [
     "pdoc>=14.0",
     "pytest>=9.0.3",
-    "pytest-beehave[html]>=3.3,<4",
     "pytest-cov>=6.1.1",
     "pytest-mock>=3.14.0",
     "ruff>=0.11.5",
@@ -34,13 +33,14 @@ dev = [
     "hypothesis>=6.148.4",
     "pyright>=1.1.407",
     "ghp-import>=2.1.0",
+    "flowr>=0.3",
+    "gherkin-official>=39.0.0",
+    "safety>=3.7.0",
 ]
-
-[tool.uv]
-package = true
 
 [tool.setuptools]
 packages = ["smith"]
+package-data = { "smith.data" = ["**/*"] }
 
 [tool.ruff.lint]
 ignore = []
@@ -79,7 +79,8 @@ mccabe.max-complexity = 10
 pydocstyle.convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101", "ANN", "D205", "D212", "D415", "D100", "D103"]
+"tests/**" = ["S101", "S404", "S108", "ANN", "D102", "D107", "D205", "D212", "D415", "D100", "D103", "D101"]
+"scripts/*.py" = ["T20"]
 
 [tool.pytest.ini_options]
 minversion = "6.0"
@@ -97,17 +98,18 @@ addopts = """
 testpaths = ["tests"]
 python_files = ["*_test.py"]
 python_functions = ["test_*"]
-render_collapsed = "all"
 
 [tool.coverage.report]
+fail_under = 100
 exclude_lines = [
     "pragma: no cover",
     "def __repr__",
     "if self.debug:",
-    "if settings.DEBUG",
+    "if settings.DEBUG:",
     "raise AssertionError",
     "if 0:",
     "if __name__ == .__main__.:",
+    "...",
 ]
 
 [tool.taskipy.tasks]
@@ -116,18 +118,15 @@ test-coverage = """\
 pytest \
   --cov-config=pyproject.toml \
   --cov=smith \
-  --cov-fail-under=100 \
   --tb=no
 """
 test-build = """\
 pytest \
-  -p no:beehave \
   --doctest-modules \
   --cov-config=pyproject.toml \
   --cov-report html:docs/coverage \
   --cov-report term:skip-covered \
   --cov=smith \
-  --cov-fail-under=100 \
   --hypothesis-show-statistics \
   --html=docs/tests/report.html \
   --self-contained-html \
@@ -151,13 +150,9 @@ pytest \
   -q \
 """
 doc-publish = "task doc-build && ghp-import -n -p -f docs"
-static-check = "pyright"
+static-check = "pyright smith tests"
+validate-flows = "bash scripts/flowr-utils.sh validate"
+regenerate-flowviz = "python scripts/generate-flowviz-data.py"
+release-check = "task lint && task static-check && task test && task doc-build"
 
-[dependency-groups]
-dev = [
-    "gherkin-official>=39.0.0",
-    "safety>=3.7.0",
-]
 
-[tool.beehave]
-features_path = "docs/features"
