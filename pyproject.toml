@@ -1,6 +1,10 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "agents-smith"
-version = "0.2.0"
+version = "0.3.0"
 description = "AI-assisted software delivery system with flow-based agent orchestration"
 readme = "README.md"
 requires-python = ">=3.13"
@@ -39,9 +43,11 @@ dev = [
     "safety>=3.7.0",
 ]
 
-[tool.setuptools]
-packages = ["smith"]
-package-data = { "smith.data" = ["**/*"] }
+[tool.setuptools.packages.find]
+include = ["smith*"]
+
+[tool.setuptools.package-data]
+"smith.data" = ["**/*"]
 
 [tool.ruff.lint]
 ignore = []
