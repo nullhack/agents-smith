@@ -13,65 +13,151 @@
 [![CI](https://img.shields.io/github/actions/workflow/status/nullhack/agents-smith/ci.yml?style=for-the-badge&label=CI)](https://github.com/nullhack/agents-smith/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/python-3.13-blue?style=for-the-badge)](https://www.python.org/downloads/)
 
-**AI-assisted software delivery system with flow-based agent orchestration.**
+**Pair program with AI, the right way.**
 
 </div>
 
 ---
 
-A delivery system that treats documentation as a first-class artifact and enforces production rigor through an AI-assisted workflow. Your team ships features, not broken promises.
-
-Developers get TDD by default with traceability from requirement to test. Product Owners get living documentation that never drifts from code. Architects get adversarial review that catches what automated checks miss.
+smith is an AI pair programming platform that connects standardised agent configurations to any project directory — and disconnects cleanly when done. It ships with a complete delivery workflow: structured flows for discovery, planning, TDD development, review, and release, powered by specialised agents (Product Owner, Architect, Engineer, Reviewer, and more).
 
 ---
 
-## Quick start
+## Install
+
+```bash
+pip install agents-smith
+```
+
+Or clone for development:
 
 ```bash
 git clone https://github.com/nullhack/agents-smith
 cd agents-smith
 curl -LsSf https://astral.sh/uv/install.sh | sh  # skip if uv is already installed
 uv sync --all-extras
-opencode && @setup-project                        # personalise for your project
-uv run task test && uv run task lint && uv run task static-check
 ```
 
 ---
 
-## Commands
+## Usage
 
-### Development
+### Connect
+
+Write agentic files (agents, skills, knowledge, flows, templates) into any project directory:
 
 ```bash
-uv run task test          # full suite + coverage
-uv run task test-fast     # fast, no coverage (use during TDD loop)
-uv run task lint          # ruff format + check
-uv run task static-check  # pyright type checking
-uv run task run           # run the app
-uv run task doc-build     # build API docs + coverage report
+smith connect              # from bundled template (no network needed)
+smith connect --from PATH  # from a local directory
+smith connect --from URL   # from a remote tarball
+smith connect --overwrite  # replace existing smith-managed files
 ```
 
-### Smith CLI
+### Status
 
-`smith` connects your project to the agents-smith agentic workflow files. It manages the agentic file lifecycle — connect, update, and disconnect — so your project stays in sync without manual file copying.
+Check what smith has connected to your project:
 
 ```bash
-smith connect              # write agentic files from the default template source
-smith connect --from PATH  # write agentic files from a local path
-smith connect --from URL   # write agentic files from a remote tarball
-smith connect --overwrite  # overwrite existing agentic files
-smith update               # re-write agentic files from the connected source
-smith disconnect           # remove all agentic files and gitignore entries
-smith status               # show connection state and source
+smith status           # human-readable output
+smith status --json    # machine-readable output
+```
+
+### Update
+
+Re-sync agentic files from the connected source:
+
+```bash
+smith update               # from the same source used at connect time
+smith update --from PATH   # from a different local source
+```
+
+### Disconnect
+
+Remove all smith-managed files and gitignore entries. User-tracked files are never touched:
+
+```bash
+smith disconnect
+```
+
+---
+
+## What you get
+
+When you run `smith connect`, the following is written into your project:
+
+| Path | Contents |
+|------|----------|
+| `AGENTS.md` | Agent routing, session protocol, artifact conventions |
+| `.opencode/agents/` | Agent identity definitions (Product Owner, Architect, Engineer, Reviewer, etc.) |
+| `.opencode/skills/` | Step-by-step skill definitions for every workflow state |
+| `.opencode/knowledge/` | Curated knowledge files (TDD, DDD, architecture, requirements, design, etc.) |
+| `.flowr/flows/` | YAML state machine definitions (delivery, TDD cycle, review gate, setup, etc.) |
+| `.templates/` | Artifact templates (ADR, feature files, changelog, interview notes, etc.) |
+
+### Agents
+
+Six specialised agents, each owning a phase of the delivery flow:
+
+| Agent | Role |
+|-------|------|
+| **Product Owner** | Scope discovery, feature selection, acceptance |
+| **Domain Expert** | Ubiquitous language, domain modeling, glossary |
+| **Architect** | System design, ADRs, context maps, review |
+| **Software Engineer** | TDD implementation, refactoring, merging |
+| **Reviewer** | Adversarial review (design, structure, conventions) |
+| **Design Agent** | Visual identity, colors, assets |
+
+### Flows
+
+Workflow state machines powered by [flowr](https://pypi.org/project/flowr/):
+
+| Flow | Purpose |
+|------|---------|
+| `delivery-flow` | End-to-end feature delivery (select → specify → implement → review → accept) |
+| `tdd-cycle-flow` | Red-green-refactor loop within a feature |
+| `review-gate-flow` | Three-tier review (design → structure → conventions) |
+| `setup-project-flow` | Initialise a new project from template |
+| `discovery-flow` | Stakeholder interviews and product scoping |
+| `planning-flow` | Feature breakdown and BDD specification |
+| `architecture-flow` | System design and context mapping |
+| `post-mortem-flow` | Incident analysis and lessons |
+
+### Knowledge
+
+Curated research summaries covering TDD, DDD, architecture patterns, SOLID, test design, code review, versioning, and more. Agents load these progressively — key takeaways for quick reference, full documents for detailed work.
+
+---
+
+## Development
+
+```bash
+uv run task test              # full suite + coverage
+uv run task test-fast         # fast, no coverage (TDD loop)
+uv run task lint              # ruff format + check
+uv run task static-check      # pyright type checking
+uv run task run               # run smith
+uv run task doc-build         # build API docs + coverage report
+uv run task release-check     # lint + typecheck + test + docs
+```
+
+### Updating the bundled template
+
+The `smith/data/` directory ships with a bundled template. To sync it from the upstream [temple8](https://github.com/nullhack/temple8) repository:
+
+```bash
+./scripts/update-bundle.sh
 ```
 
 ---
 
 ## Documentation
 
-- **[Product Definition](docs/product-definition.md)** — product boundaries, users, and scope
-- **[System Overview](docs/system.md)** — architecture, domain model, module structure, and constraints
-- **[Glossary](docs/glossary.md)** — living domain glossary
+- **[Product Definition](docs/spec/product_definition.md)** — what smith is, who it's for, quality attributes
+- **[System Overview](docs/spec/system.md)** — architecture, domain model, module structure, constraints
+- **[Glossary](docs/spec/glossary.md)** — living domain glossary
+- **[Technical Design](docs/spec/technical_design.md)** — hexagonal architecture, contracts, C4 diagrams
+- **[Context Map](docs/spec/context_map.md)** — bounded contexts and integration points
+- **[Branding](docs/branding.md)** — visual identity, voice, release naming convention
 
 ---
 
