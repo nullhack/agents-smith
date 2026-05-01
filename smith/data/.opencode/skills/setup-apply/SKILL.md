@@ -8,7 +8,7 @@ description: "Apply text substitutions, rename package directory, and write temp
 1. Rename the package directory: `mv app {package_name}`
 2. Apply every substitution from `template-config.yaml` substitutions section in order:
    - **pyproject.toml**: 7 substitutions (including version reset to `0.1.0`)
-   - **README.md**: many nullhack→github_username, agents-smith→project_name, 1 eol→author_name (only in author credit line — do not replace other occurrences)
+   - **README.md**: many nullhack→github_username, temple8→project_name, 1 eol→author_name (only in author credit line — do not replace other occurrences)
    - **.github/workflows/ci.yml**: 2 import app→package_name, 1 href api fix
    - **LICENSE**: 1 copyright substitution
    - **tests/unit/main_test.py**: 1 import substitution
@@ -21,4 +21,4 @@ description: "Apply text substitutions, rename package directory, and write temp
    - `no_stale_app_imports`: true if grep returns empty
    - `package_renamed`: true if old `app/` is gone and new directory exists
    - `version_reset`: true if pyproject.toml version is `0.1.0`
-8. IF all evidence is true → check flow transitions to determine next state; ELSE exit `failed`.
+8. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

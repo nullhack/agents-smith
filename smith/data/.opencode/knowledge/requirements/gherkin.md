@@ -98,6 +98,14 @@ Feature files are located at `features/<file>.feature`. The flow works on one fe
 
 Tests follow the pattern `tests/features/<feature_slug>/<rule_slug>_test.py` with function names `test_<feature_stem>_<id>`.
 
+### Feature Test vs Unit Test Boundary
+
+`tests/features/` contains only BDD scenario tests with `@id` traceability to the feature file. Coverage-boosting tests that exercise implementation branches not covered by any `@id` example are unit contract tests and belong in `tests/unit/`, not `tests/features/`. Adding a test to `tests/features/` without a corresponding `@id` tag violates the traceability contract.
+
+### Two-Dimensional Traceability
+
+Traceability is two-dimensional: **structural** (every @id has a test function) and **semantic** (every @id test exercises the entry point the AC describes). Structural traceability without semantic depth creates a false sense of coverage — tests exist for every example but don't verify the actual user-facing behavior. If the AC describes a command-line invocation with flags, the test must invoke the command handler with those flags; calling domain methods directly satisfies structural traceability but fails semantic depth.
+
 ## Related
 
 - [[requirements/invest]] — story quality criteria applied before writing Examples

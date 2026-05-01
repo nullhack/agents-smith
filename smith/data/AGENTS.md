@@ -1,5 +1,3 @@
-# Agents-Smith
-
 ## Project Structure
 - `.flowr/flows/` — YAML state machine definitions (source of truth for routing)
 - `.flowr/sessions/` — runtime session state
@@ -75,22 +73,18 @@ Artifact names in `in` and `out` lists use these conventions:
 
 ## Flowr Commands
 
-All commands require the virtual environment: `source .venv/bin/activate`
+All commands require the virtual environment: `source .venv/bin/activate`. See [[workflow/flowr-operations]] for full command reference and workflow pattern.
 
 | Command | Purpose |
 |---------|---------|
-| `python -m flowr validate <flow>.yaml` | Validate a flow definition |
-| `python -m flowr validate` (no arg) | Validate all flows |
-| `python -m flowr states <flow>.yaml` | List all states in a flow |
-| `python -m flowr next <flow>.yaml <state>` | Show valid transitions from a state |
-| `python -m flowr transition <flow>.yaml <state> <trigger>` | Compute next state given a trigger |
-| `python -m flowr transition <flow>.yaml <state> <trigger> --evidence key=value` | Compute next state with condition evidence |
-| `python -m flowr check <flow>.yaml <state> [target]` | Check condition guards for a state |
-| `python -m flowr mermaid <flow>.yaml` | Export flow as Mermaid diagram |
-| `./scripts/flowr-utils.sh validate [flow]` | Validate flow(s) via wrapper script |
-| `./scripts/flowr-utils.sh view <flow>` | View flow as Mermaid diagram |
-| `./scripts/flowr-utils.sh list` | List all available flows |
-| `./scripts/flowr-utils.sh graph` | Generate interactive D3.js visualization |
+| `python -m flowr check <flow> <state>` | Show state attrs, owner, skills, and transitions |
+| `python -m flowr check <flow> <state> <target>` | Show conditions for a specific transition |
+| `python -m flowr next <flow> <state> [--evidence key=value]` | Show which transitions pass given evidence |
+| `python -m flowr transition <flow> <state> <trigger> [--evidence key=value]` | Advance to the next state |
+| `python -m flowr validate [<flow>]` | Validate flow definitions |
+| `python -m flowr states <flow>` | List all states in a flow |
+| `python -m flowr mermaid <flow>` | Export flow as Mermaid diagram |
+| `task regenerate-flowviz` | Regenerate interactive D3.js visualization |
 
 ## Project Commands
 
@@ -113,16 +107,18 @@ Linting and formatting:
 | `ruff check --fix .` | Auto-fix lint issues |
 
 ## Session Protocol
-1. `flowr status` → current state, owner, skills, transitions
-2. Announce the state (one line), then load the skill and do the work
-3. `flowr advance <transition>` to move to next state
+
+Every state transition must go through flowr. Do not skip steps or guess transitions. See [[workflow/flowr-operations]] for the full command reference.
+
+1. **State entry:** Run `python -m flowr check <flow> <state>` to see current state, owner, skills, and available transitions. Announce the state in one line — e.g. `→ specify-feature`. No preamble, no recap of how you got here.
+2. **Dispatch to owner agent:** The state's `owner` field names the responsible agent. Call that agent as a subagent with the state's `skills` loaded, passing the state attrs as context. Owner mapping: `PO` → product-owner, `DE` → domain-expert, `SE` → software-engineer, `SA` → system-architect, `R` → reviewer, `Design Agent` → design-agent, `Setup Agent` → setup-agent.
+3. **Do the work:** Load and execute the skill(s) listed in the state's `skills` field. Read `in` artifacts on demand. Write only to `out` artifacts.
+4. **State exit:** Set evidence for any guarded transitions based on work completed. Run `python -m flowr next <flow> <state> --evidence key=value` to see available paths. Choose the path that matches the work outcome. Run `python -m flowr transition <flow> <state> <trigger> --evidence key=value` to advance. Do not skip this step.
 
 ### Within a State
 
 Announce the state once at the top, then go quiet:
 
-- **State entry:** One line stating where you are — e.g. `→ specify-feature`. No preamble, no recap of how you got there.
-- **Dispatch to the owner agent:** The state's `owner` field names the responsible agent. Call that agent as a subagent with the state's `skills` loaded, passing the state attrs as context. Owner mapping: `PO` → product-owner, `DE` → domain-expert, `SE` → software-engineer, `SA` → system-architect, `R` → reviewer, `Design Agent` → design-agent, `Setup Agent` → setup-agent.
 - **Respect the artifact contract:** The state's attrs define what the owner agent may read and write:
   - `in`: Read-only context. List what's available first, then read only what the task requires. No section specifications.
   - `out`: May create or edit. Section sub-lists indicate which sections the state should produce or update.
@@ -133,4 +129,3 @@ Announce the state once at the top, then go quiet:
 - **Specification documents are read-only during development.** During TDD and review cycles, the SE and reviewer may ONLY modify production code and test code. Spec document inconsistencies must be FLAGGED in output notes, not fixed directly. Spec docs are owned by other flow states and can only be changed through the appropriate flow step — after code is reviewed and approved.
 - **Do the work with the fewest, quietest commands.** Suppress verbose output. If a command can be scoped with a flag, pipe, or limit — use it. Don't dump full files or directory listings when a targeted query answers the question.
 - **No narration between steps.** The command and its output are the conversation. Don't echo what you're about to do or what you just did.
-- **State exit:** `flowr advance` and the transition name. Nothing more.

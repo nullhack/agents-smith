@@ -5,7 +5,7 @@ description: "Create logo and banner using favicon-first, monochrome-first, prog
 
 # Design Assets
 
-Load [[design/project-assets#key-takeaways]] and [[design/visual-harmony#key-takeaways]] before starting.
+Load [[design/project-assets#key-takeaways]] and [[design/visual-harmony#key-takeaways]] before starting. 
 
 1. Read `docs/branding.md` and extract the personality adjectives, visual metaphor (if any), and colour palette from the Visual section.
 2. Determine the logo type per [[design/identity-design#concepts]]: combination mark (new brands), abstract mark (established names), pictogram (strong visual metaphor), or letterform (compact avatar).
@@ -29,4 +29,4 @@ Load [[design/project-assets#key-takeaways]] and [[design/visual-harmony#key-tak
     - `docs/assets/banner.svg` — README banner, composed using rule of thirds, tested on light and dark backgrounds
 12. **Create favicon set** per [[design/project-assets#concepts]]: favicon.ico, icon.svg (with dark-mode media query), apple-touch-icon.png, icon-192.png, icon-512.png. Each size tier progressively simplified per [[design/project-assets#concepts]].
 13. Update `docs/branding.md` Visual section with asset paths.
-14. Check flow transitions to determine next state.
+14. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

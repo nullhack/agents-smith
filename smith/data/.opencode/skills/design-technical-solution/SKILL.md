@@ -5,7 +5,7 @@ description: "Design the technical solution — architectural style, stack, modu
 
 # Design Technical Solution
 
-Load [[architecture/quality-attributes#key-takeaways]], [[architecture/technical-design#key-takeaways]], and [[architecture/contract-design#key-takeaways]] before starting.
+Load [[architecture/quality-attributes#key-takeaways]], [[architecture/technical-design#key-takeaways]], and [[architecture/contract-design#key-takeaways]] before starting. 
 
 1. Rank quality attributes by business priority per [[architecture/quality-attributes#concepts]].
 2. Select architectural style per the quality-attribute-to-style mapping in
@@ -20,4 +20,4 @@ Load [[architecture/quality-attributes#key-takeaways]], [[architecture/technical
 9. If a decision is architecturally significant per [[architecture/adr#key-takeaways]],
    route to needs_decisions.
 10. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-11. Check flow transitions to determine next state.
+11. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

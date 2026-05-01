@@ -5,7 +5,7 @@ description: "Interview stakeholder to establish brand identity: personality, vi
 
 # Setup Branding
 
-Load [[design/identity-design#key-takeaways]] and [[requirements/interview-techniques#key-takeaways]] before starting.
+Load [[design/identity-design#key-takeaways]] and [[requirements/interview-techniques#key-takeaways]] before starting. 
 
 1. Ask the stakeholder for the project name (if not already set in `pyproject.toml`).
 2. Ask for a one-sentence tagline describing what the project does.
@@ -16,4 +16,4 @@ Load [[design/identity-design#key-takeaways]] and [[requirements/interview-techn
 7. Ask for the release naming convention per [[software-craft/versioning#key-takeaways]]. If not decided, offer the `adjective-noun` pattern and ask for a theme word (e.g., "Greek antiquity", "space", "mythology").
 8. Ask for wording rules: words to avoid and words to prefer per [[design/identity-design#concepts]].
 9. Write results to `docs/branding.md` using the template at `.templates/docs/branding/branding.md.template`. Fill in Identity, Release Naming, and Wording sections. Leave Visual section with placeholder headings for the next state.
-10. Check flow transitions to determine next state.
+10. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

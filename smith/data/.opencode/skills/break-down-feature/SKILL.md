@@ -5,7 +5,7 @@ description: "Decompose a selected feature into user stories that pass INVEST cr
 
 # Break Down Feature
 
-Load [[requirements/invest]] and [[requirements/decomposition]] before starting.
+Load [[requirements/invest]] and [[requirements/decomposition]] before starting. 
 
 1. Derive Rule blocks from the feature description — one Rule per user story.
 2. Validate each Rule per [[requirements/invest]].
@@ -13,4 +13,4 @@ Load [[requirements/invest]] and [[requirements/decomposition]] before starting.
 4. If a story lacks a named user role or business value, reframe per [[requirements/invest]].
 5. If a Rule spans more than 2 concerns or has more than 8 candidate Examples, split per [[requirements/decomposition]].
 6. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-7. Check flow transitions to determine next state.
+7. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

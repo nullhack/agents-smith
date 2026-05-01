@@ -5,7 +5,7 @@ description: "Conduct a targeted conversation with stakeholders to capture featu
 
 # Specify Feature
 
-Load [[requirements/interview-techniques#key-takeaways]] before starting.
+Load [[requirements/interview-techniques#key-takeaways]] before starting. 
 
 1. Conduct a feature-specific interview per [[requirements/interview-techniques#concepts]],
    focusing on behavioral rules and scenarios.
@@ -16,4 +16,4 @@ Load [[requirements/interview-techniques#key-takeaways]] before starting.
 4. If hidden failure modes are suspected, apply a pre-mortem per [[requirements/pre-mortem]].
 5. Write confirmation gate before any file writes.
 6. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-7. Check flow transitions to determine next state.
+7. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

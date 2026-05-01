@@ -5,7 +5,7 @@ description: "Write concrete Given/When/Then BDD scenarios for each user story u
 
 # Write BDD Features
 
-Load [[requirements/gherkin]], [[requirements/moscow]], [[requirements/pre-mortem]], and [[requirements/decomposition]] before starting.
+Load [[requirements/gherkin]], [[requirements/moscow]], [[requirements/pre-mortem]], and [[requirements/decomposition]] before starting. 
 
 1. Run a pre-mortem per [[requirements/pre-mortem]] for each Rule before writing any Examples.
 2. If hidden failure modes surface from the pre-mortem, add Examples to cover them per [[requirements/gherkin]].
@@ -15,4 +15,4 @@ Load [[requirements/gherkin]], [[requirements/moscow]], [[requirements/pre-morte
 6. If a Rule spans more than 2 concerns, split per [[requirements/decomposition]].
 7. Assign `@id` tags to all Examples.
 8. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-9. Check flow transitions to determine next state.
+9. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

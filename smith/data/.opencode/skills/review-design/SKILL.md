@@ -5,7 +5,7 @@ description: "Verify implementation aligns with domain model, architectural deci
 
 # Review Design
 
-Load [[architecture/reconciliation]], [[architecture/adr]], [[software-craft/code-review]], [[software-craft/refactoring]], [[software-craft/object-calisthenics]], [[software-craft/smell-catalogue]], [[software-craft/design-patterns]], [[software-craft/solid]], and [[software-craft/tdd]] before starting.
+Load [[architecture/reconciliation]], [[architecture/adr]], [[software-craft/code-review]], [[software-craft/refactoring]], [[software-craft/object-calisthenics]], [[software-craft/smell-catalogue]], [[software-craft/design-patterns]], [[software-craft/solid]], and [[software-craft/tdd]] before starting. 
 
 1. Declare adversarial stance per [[software-craft/code-review#concepts]] — default hypothesis: "it might be broken despite green tests."
 2. Verify implementation aligns with domain model and bounded contexts per [[architecture/reconciliation#concepts]].
@@ -19,4 +19,4 @@ Load [[architecture/reconciliation]], [[architecture/adr]], [[software-craft/cod
 10. IF a quality attribute from the product definition has no corresponding design decision → flag it as a gap.
 11. Stop at the first failure per [[software-craft/code-review#key-takeaways]] — write a minimal REJECTED report with file:line evidence.
 12. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-13. Check flow transitions to determine next state.
+13. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

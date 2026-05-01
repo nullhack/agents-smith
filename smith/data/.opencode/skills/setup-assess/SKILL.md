@@ -5,7 +5,7 @@ description: "Interview user to understand project needs and assess parameters f
 
 # Setup Assess
 
-Load [[requirements/interview-techniques#key-takeaways]] before starting.
+Load [[requirements/interview-techniques#key-takeaways]] before starting. 
 
 1. Use interview techniques per [[requirements/interview-techniques#concepts]] to understand project context.
 2. Start with general questions (Funnel Level 1):
@@ -28,4 +28,4 @@ Load [[requirements/interview-techniques#key-takeaways]] before starting.
    - Why is [constraint] important for this project?
    - What would happen if [setup choice] were different?
 7. Write assessment summary for confirmation before proceeding.
-8. Check flow transitions to determine next state.
+8. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

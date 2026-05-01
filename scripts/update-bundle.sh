@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
-# Update smith/data/ with agentic files from the agents-smith v8_release branch.
+# Update smith/data/ with agentic files from the temple8 main branch.
 # Usage: ./scripts/update-bundle.sh
 #
-# Downloads the agents-smith v8_release archive from GitHub,
+# Downloads the temple8 main archive from GitHub,
 # extracts it, and copies only the agentic files to smith/data/.
 # Agentic files: AGENTS.md, .opencode/agents/, .opencode/skills/,
 #   .opencode/knowledge/, .opencode/tools/, .templates/, .flowr/
@@ -14,17 +14,17 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 DATA_DIR="$PROJECT_ROOT/smith/data"
 
-echo "Downloading agents-smith v8_release archive..."
-curl -sL "https://github.com/nullhack/agents-smith/archive/refs/heads/v8_release.tar.gz" \
-    -o "$TEMP_DIR/agents-smith.tar.gz"
+echo "Downloading temple8 main archive..."
+curl -sL "https://github.com/nullhack/temple8/archive/refs/heads/main.tar.gz" \
+    -o "$TEMP_DIR/temple8.tar.gz"
 
 echo "Extracting archive..."
-tar -xzf "$TEMP_DIR/agents-smith.tar.gz" -C "$TEMP_DIR"
+tar -xzf "$TEMP_DIR/temple8.tar.gz" -C "$TEMP_DIR"
 
-SRC_DIR="$TEMP_DIR/agents-smith-v8_release"
+SRC_DIR="$TEMP_DIR/temple8-main"
 
 if [ ! -d "$SRC_DIR" ]; then
-    echo "ERROR: Expected directory agents-smith-v8_release not found in archive"
+    echo "ERROR: Expected directory temple8-main not found in archive"
     rm -rf "$TEMP_DIR"
     exit 1
 fi
@@ -55,7 +55,7 @@ cp -r "$SRC_DIR/.flowr" "$DATA_DIR/.flowr"
 echo "Cleaning up..."
 rm -rf "$TEMP_DIR"
 
-echo "Done. smith/data/ updated from agents-smith v8_release."
+echo "Done. smith/data/ updated from temple8 main."
 echo "Files in smith/data/:"
 find "$DATA_DIR" -not -name '__init__.py' -not -path "$DATA_DIR/__init__.py" -type f | head -20
 echo "..."

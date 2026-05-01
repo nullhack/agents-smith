@@ -5,7 +5,7 @@ description: "Interview stakeholders to elicit pain points, business goals, doma
 
 # Conduct Stakeholder Interview
 
-Load [[requirements/interview-techniques#key-takeaways]] before starting.
+Load [[requirements/interview-techniques#key-takeaways]] before starting. 
 
 1. Start with general questions per [[requirements/interview-techniques#concepts]].
 2. If general questions reveal multiple behaviour groups, probe each as a
@@ -15,4 +15,4 @@ Load [[requirements/interview-techniques#key-takeaways]] before starting.
 4. If >2 concerns emerge for a single feature, split per [[requirements/decomposition]].
 5. Write confirmation gate before any file writes.
 6. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in interview notes for the appropriate step.
-7. Check flow transitions to determine next state.
+7. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

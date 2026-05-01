@@ -69,10 +69,10 @@ Estimate implementation complexity:
 
 ### Selection Rules
 
-1. Dependency=1 features are ineligible regardless of WSJF score
-2. Pick the highest WSJF score among Dependency=0 candidates
-3. Ties broken by Value — user impact matters more than effort optimization
-4. If all BASELINED features have Dependency=1: resolve the blocking dependency first
+1. Only features with Dependency=0 are eligible — features that depend on other uncompleted features cannot be selected, regardless of WSJF score.
+2. Among eligible features, select the one with the highest WSJF score.
+3. Ties broken by Value — user impact matters more than effort optimization.
+4. If no features are eligible (all have Dependency=1): resolve the blocking dependency first, then re-score.
 
 ### Prerequisites
 

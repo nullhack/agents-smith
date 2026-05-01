@@ -5,7 +5,7 @@ description: "Map bounded context relationships, integration points, and anti-co
 
 # Map Contexts
 
-Load [[domain-modeling/context-mapping#key-takeaways]] before starting.
+Load [[domain-modeling/context-mapping#key-takeaways]] before starting. 
 
 1. For each pair of interacting bounded contexts, select a relationship pattern
    per [[domain-modeling/context-mapping#concepts]].
@@ -15,4 +15,4 @@ Load [[domain-modeling/context-mapping#key-takeaways]] before starting.
 4. If a downstream context needs isolation from an upstream model, design an
    anti-corruption layer per [[domain-modeling/context-mapping#concepts]].
 5. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-6. Check flow transitions to determine next state.
+6. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

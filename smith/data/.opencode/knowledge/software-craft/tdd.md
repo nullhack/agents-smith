@@ -75,7 +75,7 @@ last-updated: 2026-04-30
 
 ### Conventions Phase Rules (after design approval)
 
-- Add coverage unit tests for uncovered branches (in `tests/unit/`, not `@id` tests)
+- Add coverage unit tests for uncovered branches in `tests/unit/` — never in `tests/features/`. The `tests/features/` directory is exclusively for `@id`-linked BDD scenario tests. Coverage-boosting tests for implementation branches are unit contract tests, not feature tests
 - Run lint (`uv run task lint`), pyright (`uv run task static-check`), full test suite
 - Add docstrings to all public classes and methods
 - Add type annotations to all public signatures

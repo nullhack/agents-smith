@@ -5,7 +5,7 @@ description: "Squash-merge feature commits into local main, pull remote main, an
 
 # Merge Local
 
-Load [[software-craft/git-conventions#key-takeaways]] before starting.
+Load [[software-craft/git-conventions#key-takeaways]] before starting. 
 
 1. Pull latest remote main: `git fetch origin main && git merge --ff-only origin/main` into local main.
 2. If remote main has diverged, rebase the feature branch on updated main before squash-merging.
@@ -17,4 +17,4 @@ Load [[software-craft/git-conventions#key-takeaways]] before starting.
    - IF the conflict is a straightforward text merge → resolve and continue.
    - IF the conflict requires a design decision → present options to the stakeholder with consequences before resolving.
 8. Write results to artifacts listed in the current state's `out` attrs. If findings affect artifacts outside the `out` contract, flag them in output notes for the appropriate step.
-9. Check flow transitions to determine next state.
+9. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.

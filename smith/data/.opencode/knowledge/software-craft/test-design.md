@@ -24,6 +24,8 @@ last-updated: 2026-04-29
 
 **Characterization Tests** (Feathers, 2004) — When modifying code without existing tests, write characterization tests first: tests that document what the code currently does, not what it should do. This creates a regression net before any changes. Characterization tests are temporary — once the code is under test, replace them with specification tests that assert desired behaviour.
 
+**Semantic Depth** — A test that exists for an @id tag but exercises domain logic directly instead of through the entry point described in the acceptance criterion has correct structural traceability but wrong semantic depth. Every @id test must exercise the entry point the AC describes: if the AC specifies a command-line invocation, the test must invoke the command handler; if the AC specifies an API call, the test must call the API endpoint. Structural traceability (every @id has a test function) without semantic depth (every @id test exercises the right entry point) creates a false sense of coverage — tests exist for every example but don't verify the actual user-facing behavior.
+
 ## Content
 
 ### Test Coupling Spectrum
@@ -49,6 +51,16 @@ last-updated: 2026-04-29
 - Each test should pass for exactly one reason
 - If a test has multiple assertions, they must all verify the same behaviour from different angles
 - Multiple behaviours → multiple tests, each with its own @id traceability
+
+### Test Location Convention
+
+| Directory | Contents | Traceability |
+|-----------|----------|-------------|
+| `tests/features/<feature_slug>/` | BDD scenario tests — one test per `@id` tag in the feature file | `@id` tag required |
+| `tests/unit/` | Unit contract tests — coverage-boosting tests for implementation branches not covered by BDD examples | No `@id` tag |
+| `tests/unit/` | Property tests — invariant verification across input ranges | No `@id` tag (except `@bug` examples) |
+
+**Rule:** `tests/features/` is exclusively for BDD scenario tests that trace back to `@id` tags in the feature file. Coverage-boosting tests that exercise implementation branches not covered by any `@id` example are unit contract tests and belong in `tests/unit/`, not `tests/features/`. A test without an `@id` tag in `tests/features/` violates the traceability contract.
 
 ## Related
 

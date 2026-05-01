@@ -5,7 +5,7 @@ description: "Select and validate a colour palette with WCAG contrast, dark-mode
 
 # Design Colours
 
-Load [[design/color-systems#key-takeaways]] before starting.
+Load [[design/color-systems#key-takeaways]] before starting. 
 
 1. Read `docs/branding.md` and extract the personality adjectives from the Identity section.
 2. Propose a primary hue based on the hue-semantics table in [[design/color-systems#content]]. The primary must reinforce the personality adjectives.
@@ -18,4 +18,4 @@ Load [[design/color-systems#key-takeaways]] before starting.
 9. Propose dark-mode counterparts for each colour. Do not simply invert — use off-white (#e0e0e0 or similar) on dark backgrounds, and adjust accent saturation for dark contexts per [[design/color-systems#key-takeaways]].
 10. Present the full palette to the stakeholder as a table: colour role, hex value, RGB, dark-mode hex, WCAG ratio on primary background, and the Itten visual weight ratio.
 11. IF stakeholder approves → write the Visual section of `docs/branding.md`. IF stakeholder requests changes → revise and re-verify contrast ratios (go to step 2).
-12. Check flow transitions to determine next state.
+12. Advance the flow with necessary evidence, choosing the appropriate next state based on the work completed.
