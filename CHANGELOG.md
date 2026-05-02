@@ -1,10 +1,20 @@
 # Changelog
 
-> *Connect AI agent configurations to any project.*
+> *Clone AI agent configurations into any project.*
 
 All notable changes to agents-smith will be documented in this file.
 
-## [2.0.0] - 20260502
+## [0.3.0] - assimilated Apoc - 20260502
+
+### Changed
+
+- **Breaking:** `smith connect` renamed to `smith clone` — the command that fetches template files and writes them to a project
+- **Breaking:** `smith disconnect` renamed to `smith purge` — the command that removes smith-managed files
+- Complete documentation rewrite: specs, features, ADRs, glossary, domain model, technical design, context map
+- Matrix/Agent Smith visual identity: green phosphor palette, S scan-line lettermark, dark void backgrounds
+- README redesigned with banner, badges, architecture diagram, and command reference
+
+## [0.2.0] - 20260501
 
 ### Added
 

@@ -11,7 +11,7 @@ Agents read this file before generating release names, C4 diagrams, README banne
 ## Identity
 
 - **Project name:** agents-smith
-- **Tagline:** Connect AI agent configurations to any project
+- **Tagline:** Clone AI agent configurations into any project
 - **Mission:** Eliminate the repetitive, error-prone process of manually copying AI agent configuration files into projects by providing a single command to fetch, install, and track them — then cleanly purge when done.
 - **Vision:** Every developer can add or remove agentic tooling from any project with one command, confident that nothing is left behind or accidentally overwritten. Like Agent Smith in the Matrix, smith enters a project, copies its patterns, and returns something more capable than what it found.
 - **Tone of voice:** direct, precise, minimal
@@ -40,9 +40,35 @@ Dark void background (`#0F1117`) with the S logo mark scaled to height, followed
 
 ## Release Naming
 
-- **Convention:** `matrix-character` (adjective-matrix-character)
-- **Theme:** The Matrix — each release is named after a character, concept, or quote from the Matrix franchise
-- **Excluded words:** easy, simple, just, quick, scaffold, boilerplate
+- **Convention:** `adjective-character` — one adjective from the approved list below, paired with a Matrix character name
+- **Rule:** No adjective-character pair may be reused across releases
+- **Examples:** assimilated Apoc, cloned Oracle, overwritten Bane
+
+### Approved adjectives
+
+These adjectives reference Agent Smith's core abilities: assimilation, replication, and overwriting.
+
+| Adjective | Meaning |
+|-----------|---------|
+| assimilated | Absorbed into the collective — Agent Smith's signature ability |
+| cloned | Directly replicated, like Smith copies himself |
+| replicated | Exact copy produced, like Smith spawning duplicates |
+| infected | Overwritten from within, like Smith corrupts programs |
+| overwritten | Identity replaced, like Smith overwrites Bane |
+| copied | Duplicated pattern transferred to a new host |
+| inserted | Injected into a system, like Smith inserts himself |
+| spawned | Multiple instances emerged from one source |
+| duplicated | Mirror image created from the original |
+| imprinted | Pattern transferred and stamped onto a host |
+| propagated | Spread through the system to new targets |
+| manifested | Brought into existence from the pattern |
+| incorporated | Absorbed into the larger collective |
+| exfiltrated | Extracted from one system and redeployed elsewhere |
+| grafted | Spliced onto an existing structure |
+
+### Matrix character pool
+
+Apoc, Bane, Cypher, Dozer, Link, Mouse, Niobe, Oracle, Seraph, Switch, Tank, Trinity, Morpheus, Neo
 
 ## Wording
 
