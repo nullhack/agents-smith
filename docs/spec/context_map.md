@@ -8,11 +8,13 @@
 
 ## Context Relationships
 
+smith has a single bounded context (Connection Management), so there are no inter-context relationships to map. The context interacts with external systems:
+
 | Upstream Context | Downstream Context | Relationship Pattern | Translation / Anti-Corruption Layer |
 |-----------------|-------------------|---------------------|-------------------------------------|
-| Template Source (External) | Connection | Customer-Supplier | Connection reads files from the template source; no translation needed — files are copied as-is |
-
-> smith has one bounded context (Connection). The Template Source is an external dependency, not a separate bounded context within smith. It provides files but has no domain logic or invariants that smith owns. The relationship is Customer-Supplier: smith (downstream) depends on the template source (upstream) for file content, but does not control it. If template versioning or validation becomes a domain concern, Template Source may be promoted to its own bounded context.
+| GitHub Repositories | Connection Management | Open-Host Service | smith accesses public archive URLs; no authentication required. The repo name is parsed from source strings via `_parse_github_url` |
+| Local Filesystem (project dir) | Connection Management | Shared Kernel | smith reads/writes project files and .gitignore using the same filesystem conventions as git |
+| pyproject.toml config | Connection Management | Published Language | `[tool.smith] source` key is a published contract within the project's own config file |
 
 ---
 
@@ -20,13 +22,12 @@
 
 ```mermaid
 graph LR
-    Connection[Connection Context<br/>connect · disconnect · update · status]
-    TS[Template Source<br/>External Dependency]
-
-    TS -->|provides files| Connection
+    GitHub[GitHub Repositories] -->|Open-Host Service: archive download| CM[Connection Management]
+    Config[pyproject.toml] -->|Published Language: source key| CM
+    CM -->|Writes files + .gitignore| FS[Project Filesystem]
 ```
 
-> The Connection context is the sole bounded context within smith. It owns the Connection aggregate and all four CLI commands. The Template Source is an external dependency (default: agents-smith; override: `--from <path/url>`) that provides the agentic files to be written. There is no anti-corruption layer because the files are copied as-is — no domain translation is needed.
+> The Connection Management context is the sole bounded context within smith. It owns the clone and purge operations and all supporting logic (source resolution, file fetching, .gitignore management). External systems — GitHub, local filesystem, and pyproject.toml — are dependencies, not separate bounded contexts.
 
 ---
 
@@ -34,9 +35,12 @@ graph LR
 
 | Integration | From | To | Mechanism | Contract |
 |-------------|------|----|-----------|----------|
-| File Provisioning | Template Source | Connection | importlib.resources from package data (bundled), filesystem read (local), HTTP download (URL) | Template source must provide a valid directory structure containing AGENTS.md, .opencode/, .templates/, and .flowr/ |
-
-> The only integration point is file provisioning: the Connection context reads agentic files from the template source. For the default (agents-smith), files are read from the `smith/data/` package directory via `importlib.resources` — no network access required. For `--from <path>`, files are read from the local filesystem. For `--from <url>`, files are downloaded via HTTP (`.tar.gz` or `.zip`) and extracted to a temporary directory. No domain events cross this boundary — it is a simple data dependency.
+| Archive download | GitHub | Connection Management | Sync HTTP (requests.get) | GitHub archive URL pattern: `https://github.com/{user}/{repo}/archive/refs/heads/{branch}.zip` |
+| URL archive download | Remote URL | Connection Management | Sync HTTP (requests.get) | URL must point to a .zip or .tar.gz archive containing allowed-topic files |
+| Local directory walk | Local Filesystem | Connection Management | Sync filesystem (os.walk) | Directory must contain files matching ALLOWED_TOPICS prefixes |
+| Config reading | pyproject.toml | Connection Management | Sync file read (tomllib) | `[tool.smith] source = "..."` TOML key |
+| File writing | Connection Management | Project Filesystem | Sync filesystem (pathlib write) | Files written at project root; .gitignore section delimited by markers |
+| File removal | Connection Management | Project Filesystem | Sync filesystem (shutil.rmtree, Path.unlink) | Only paths listed in smith-managed .gitignore section |
 
 ---
 
@@ -44,35 +48,30 @@ graph LR
 
 | ACL | Protects Context | From Context | Translation Rules |
 |-----|-----------------|--------------|-------------------|
-| TemplateSourceAdapter | Connection | Template Source (External) | Normalises different source types (bundled package data, local path, remote URL) into a uniform file-provider interface that the Connection aggregate can consume without knowing the source type |
-
-> The TemplateSourceAdapter protects the Connection context from variations in how template files are obtained. It translates between three source types (bundled package data via importlib.resources, local filesystem paths, remote URLs via HTTP download) and presents a uniform interface: "given a template source, provide the set of files to write." This keeps the Connection aggregate focused on its invariants (atomicity, safety, clean separation) without coupling to file resolution details.
+| `_is_allowed` filter | Connection Management | Template sources (GitHub, URLs, local dirs) | Strips all files not matching ALLOWED_TOPICS prefixes, ensuring only agentic config files are ever written to the project directory |
+| `_detect_top_dir` + prefix stripping | Connection Management | Archive formats (zip/tar) | Removes the single top-level directory (e.g., `temple8-main/`) from archive entries so files are written at project root, not nested under the repo folder |
+| `resolve_source` chain | Connection Management | User input | Normalises source from CLI arg, config, or default into a canonical string for `fetch()` |
 
 ---
 
 ## Bounded Context Details
 
-### Connection Context
+### Connection Management Context
 
-**Responsibility:** Manage the full lifecycle of connecting agentic files to a project directory — connect, disconnect, update, and status.
+**Responsibility:** Manage the full lifecycle of cloning agentic files to a project directory — clone and purge.
 
-**Aggregate Root:** Connection
+**Aggregate Root:** Connection (orchestrated by clone/purge functions in core.py)
 
 **Key Invariants:**
-- Atomicity: either all agentic files are written or none are
-- Safety: existing files are never overwritten without explicit `--overwrite` flag
-- Clean separation: on disconnect, no agentic files remain (only .gitignore entries)
-- Consistency: .gitignore section and agentic file set are always in sync
+- Reliability: only files matching ALLOWED_TOPICS prefixes are written — zero disallowed files, ever
+- Reversibility: purge removes only files listed in the managed .gitignore section — zero non-managed files deleted
+- Safety: existing directories and files are skipped by default; `--overwrite` is required to replace
 
 **CLI Commands (delivery mechanism):**
-- `smith connect [--from <source>] [--overwrite]`
-- `smith disconnect`
-- `smith update`
-- `smith status`
+- `smith clone [--source <path/url>] [--overwrite]`
+- `smith purge`
 
-**Entities:** Connection (aggregate root)
-
-**Value Objects:** TemplateSource, GitignoreSection, ConnectionStatus
+**Entities:** FileSpec (value object), GitignoreManager (entity), Connection (aggregate)
 
 ---
 
@@ -80,5 +79,4 @@ graph LR
 
 | Date | Source | Change | Reason |
 |------|--------|--------|--------|
-| 2026-05-01 | architecture-assessment | Complete rewrite for corrected product scope | Previous context map described the wrong product (Python project template with single Template context). smith is an AI pair programming platform with a Connection context and external Template Source dependency. |
-| 2026-05-01 | IN_20260501_local-bundle-reversal | Updated integration point and ACL description: bundled template resolution is now local package data via importlib.resources, not GitHub-based download; URL sources download via requests with no persistent cache | Local bundle provides instant offline default; GitHub-based resolution introduced runtime network dependency and cache staleness |
+| 2026-05-02 | initial | Context map derived from working code | Baseline from existing implementation on rebuild/minimal-v2 branch |

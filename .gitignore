@@ -179,3 +179,10 @@ AGENTS.md
 
 # Generated flow visualization data (regenerate with: task regenerate-flowviz)
 flowviz/
+
+# smith managed
+.flowr/
+.opencode/
+.templates/
+AGENTS.md
+# end smith managed

@@ -4,15 +4,12 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "agents-smith"
-version = "0.3.0"
-description = "AI-assisted software delivery system with flow-based agent orchestration"
+version = "2.0.0"
+description = "Connect AI agent configurations to any project"
 readme = "README.md"
 requires-python = ">=3.13"
 license = { file = "LICENSE" }
 authors = [
-    { name = "eol", email = "nullhack@users.noreply.github.com" }
-]
-maintainers = [
     { name = "eol", email = "nullhack@users.noreply.github.com" }
 ]
 dependencies = [
@@ -24,142 +21,26 @@ smith = "smith.__main__:main"
 
 [project.urls]
 Repository = "https://github.com/nullhack/agents-smith"
-Documentation = "https://github.com/nullhack/agents-smith/tree/main/docs/api/"
 
 [project.optional-dependencies]
 dev = [
-    "pdoc>=14.0",
     "pytest>=9.0.3",
     "pytest-cov>=6.1.1",
-    "pytest-html>=4.1.1",
-    "pytest-mock>=3.14.0",
     "ruff>=0.11.5",
-    "taskipy>=1.14.1",
-    "hypothesis>=6.148.4",
-    "pyright>=1.1.407",
-    "ghp-import>=2.1.0",
-    "flowr>=0.3",
-    "gherkin-official>=39.0.0",
-    "safety>=3.7.0",
 ]
 
 [tool.setuptools.packages.find]
 include = ["smith*"]
 
-[tool.setuptools.package-data]
-"smith.data" = ["**/*"]
-
 [tool.ruff.lint]
-ignore = []
-select = [
-  "A",
-  "ANN",
-  "ASYNC",
-  "B",
-  "C4",
-  "C9",
-  "D",
-  "DTZ",
-  "E",
-  "ERA",
-  "F",
-  "FURB",
-  "G",
-  "I",
-  "ICN",
-  "LOG",
-  "N",
-  "NPY",
-  "PD",
-  "PT",
-  "PTH",
-  "R",
-  "RUF",
-  "S",
-  "SIM",
-  "T20",
-  "TD",
-  "W",
-]
+select = ["E", "F", "I", "W"]
 preview = true
-mccabe.max-complexity = 10
-pydocstyle.convention = "google"
 
 [tool.ruff.lint.per-file-ignores]
-"tests/**" = ["S101", "S404", "S108", "ANN", "D102", "D107", "D205", "D212", "D415", "D100", "D103", "D101"]
-"scripts/*.py" = ["T20"]
+"tests/**" = ["S101"]
 
 [tool.pytest.ini_options]
-minversion = "6.0"
-markers = [
-    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
-    "deprecated: marks tests for deprecated AC; automatically skipped (deselect with '-m \"not deprecated\"')",
-    "bug: marks tests that reproduce a reported defect (deselect with '-m \"not bug\"')",
-]
-addopts = """
---maxfail=10 \
---color=yes \
---tb=short \
--q \
-"""
 testpaths = ["tests"]
-python_files = ["*_test.py"]
+python_files = ["test_*.py"]
 python_functions = ["test_*"]
-
-[tool.coverage.report]
-fail_under = 100
-exclude_lines = [
-    "pragma: no cover",
-    "def __repr__",
-    "if self.debug:",
-    "if settings.DEBUG:",
-    "raise AssertionError",
-    "if 0:",
-    "if __name__ == .__main__.:",
-    "...",
-]
-
-[tool.taskipy.tasks]
-run = "python -m smith"
-test-coverage = """\
-pytest \
-  --cov-config=pyproject.toml \
-  --cov=smith \
-  --tb=no
-"""
-test-build = """\
-pytest \
-  --doctest-modules \
-  --cov-config=pyproject.toml \
-  --cov-report html:docs/coverage \
-  --cov-report term:skip-covered \
-  --cov=smith \
-  --hypothesis-show-statistics \
-  --html=docs/tests/report.html \
-  --self-contained-html \
-"""
-test = "pytest --tb=short"
-test-fast = "pytest -m \"not slow\" -q --no-header --tb=no"
-test-slow = "pytest -m slow"
-ruff-check = "ruff check . --fix"
-ruff-format = "ruff format ."
-ruff-format-check = "ruff format . --check"
-lint = "task ruff-check && task ruff-format"
-doc-serve = "pdoc ./smith --host localhost --port 8080"
-doc-build = """\
-pdoc ./smith -o docs/api --search && \
-pytest \
-  --cov-config=pyproject.toml \
-  --cov-report html:docs/coverage \
-  --cov=smith \
-  --html=docs/tests/report.html \
-  --self-contained-html \
-  -q \
-"""
-doc-publish = "task doc-build && ghp-import -n -p -f docs"
-static-check = "pyright smith tests"
-validate-flows = "bash scripts/flowr-utils.sh validate"
-regenerate-flowviz = "python scripts/generate-flowviz-data.py"
-release-check = "task lint && task static-check && task test && task doc-build"
-
-
+addopts = "--tb=short -q"

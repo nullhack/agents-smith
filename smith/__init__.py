@@ -1,1 +1,1 @@
-"""Smith — connect AI agent configurations to any project."""
+__version__ = "2.0.0"

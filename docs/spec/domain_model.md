@@ -4,13 +4,13 @@
 > Updated by the Domain Expert when domain understanding evolves.
 > This document captures what code cannot express: WHY entities exist, HOW aggregates are bounded, and WHAT business capabilities each context serves.
 >
-> **Evolving document:** Event Storming fills the Event Map, Aggregate Candidates, and Context Candidates sections (workshop draft). Domain Modeling then formalizes them into Entities, Relationships, and Aggregate Boundaries.
+> **Evolving document:** Derived from working code as baseline.
 
 ---
 
 ## Summary
 
-smith is an AI pair programming platform that connects standardised agent configurations (AGENTS.md, .opencode/, .templates/, .flowr/) to any project directory — and disconnects cleanly when done. Its domain is centred on the **Connection lifecycle**: connect, disconnect, update, and status. The domain has one bounded context — the **Connection context** — which owns the Connection aggregate and supporting value objects. The initial delivery (smith-commands) validates the full connect/work/disconnect cycle end-to-end with four CLI commands.
+smith manages the lifecycle of AI agent configuration files in a project. The domain centers on two operations: clone (fetch template files from a source, filter by allowed topics, write them into a project, and track them in .gitignore) and purge (read the .gitignore section and remove only the listed files). The core invariants are: only allowed-topic files are ever written, purge removes only tracked files, and existing files are skipped unless `--overwrite` is passed.
 
 ---
 
@@ -20,32 +20,25 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Event | Description | Trigger | Bounded Context |
 |-------|-------------|---------|-----------------|
-| `ConnectionRequested` | User invoked `smith connect` in a project directory | User runs `smith connect [--from <source>] [--overwrite]` | Connection |
-| `ConnectionEstablished` | All agentic files written to the project directory atomically | All files written successfully | Connection |
-
-| `ConnectionRolledBack` | Partial write detected; all written files removed to restore clean state | Write failure during connect | Connection |
-| `DisconnectionRequested` | User invoked `smith disconnect` in a connected project directory | User runs `smith disconnect` | Connection |
-| `DisconnectionCompleted` | All agentic files removed; managed .gitignore section preserved | All files removed successfully | Connection |
-| `UpdateRequested` | User invoked `smith update` in a connected project directory | User runs `smith update` | Connection |
-| `UpdateCompleted` | Agentic files updated to latest from template source | All files updated successfully | Connection |
-| `StatusRequested` | User invoked `smith status` in a project directory | User runs `smith status` | Connection |
-| `StatusReported` | Connection status displayed to the user | Status check completed | Connection |
+| `SourceResolved` | The template source has been determined from CLI arg, config, or default | Source resolution completes | Connection Management |
+| `FilesFetched` | Template files have been fetched from a source and filtered by allowed topics | Archive extraction or local walk completes | Connection Management |
+| `FilesCloned` | Template files have been written to the project directory and tracked in .gitignore | `clone` command completes | Connection Management |
+| `GitignoreSectionUpdated` | The smith-managed section in .gitignore has been created or replaced | Clone writes files | Connection Management |
+| `FilesPurged` | Smith-managed files and directories have been removed from the project | `purge` command completes | Connection Management |
 
 ### Commands
 
 | Command | Description | Produces Event | Actor |
 |---------|-------------|----------------|-------|
-| `Connect` | Write all agentic files to a project directory from a template source | `ConnectionEstablished` or `ConnectionRolledBack` | Engineer |
-| `Disconnect` | Remove all agentic files and managed .gitignore entries from a project directory | `DisconnectionCompleted` | Engineer |
-| `Update` | Refresh agentic files from the template source in an already-connected project | `UpdateCompleted` | Engineer |
-| `ReportStatus` | Display whether the project directory is connected and which agentic files are present | `StatusReported` | Engineer |
+| `clone` | Fetch template files from a source, filter, write to project, update .gitignore | `SourceResolved` → `FilesFetched` → `FilesCloned` → `GitignoreSectionUpdated` | Engineer |
+| `purge` | Read .gitignore section and remove all smith-managed files | `FilesPurged` | Engineer |
 
 ### Read Models
 
 | Read Model | Description | Consumes Event | Used By |
 |------------|-------------|----------------|---------|
-| `ConnectionStatus` | Whether the project is connected, which files are present, and the template source | `StatusRequested` | CLI output |
-| `RollbackLog` | Files that were written before rollback was triggered | `ConnectionRolledBack` | CLI error output |
+| `.gitignore section` | The smith-managed section listing which top-level files/dirs are tracked | `GitignoreSectionUpdated` | `purge` command |
+| `written file specs` | The list of FileSpecs actually written (after filtering) | `FilesCloned` | .gitignore section update |
 
 ---
 
@@ -55,7 +48,7 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Candidate | Responsibility | Grouped Aggregates | Notes |
 |-----------|---------------|--------------------|-------|
-| Connection | Owns the full lifecycle of connecting/disconnecting agentic files to a project directory | Connection | Single context — the Connection lifecycle is the domain |
+| Connection Management | Owning the full lifecycle of cloning/purging template files | Connection | Single context — smith has one cohesive purpose |
 
 ---
 
@@ -65,7 +58,7 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Candidate | Events Grouped | Tentative Root Entity | Notes |
 |-----------|---------------|-----------------------|-------|
-| Connection | `ConnectionRequested`, `ConnectionEstablished`, `ConnectionRolledBack`, `DisconnectionRequested`, `DisconnectionCompleted`, `UpdateRequested`, `UpdateCompleted`, `StatusRequested`, `StatusReported` | Connection | Single aggregate — the Connection is the sole entry point for all four commands |
+| Connection | `SourceResolved`, `FilesFetched`, `FilesCloned`, `GitignoreSectionUpdated`, `FilesPurged` | clone/purge functions | All events are part of one atomic clone/purge operation |
 
 ---
 
@@ -73,9 +66,7 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Context | Responsibility | Key Entities | Integration Points |
 |---------|----------------|--------------|-------------------|
-| Connection | Manage the full lifecycle of connecting agentic files to a project directory: connect, disconnect, update, and status | Connection, TemplateSource, GitignoreSection | Template Source (external dependency for file resolution) |
-
-> smith has one bounded context (Connection). The Template Source is an infrastructure dependency, not a separate bounded context — it provides files but has no independent domain logic or invariants. If template versioning or validation becomes a domain concern in future, it may be extracted into its own context.
+| Connection Management | Fetch, filter, write, and remove template files; manage .gitignore tracking | FileSpec, GitignoreManager | Reads from GitHub/URL/local sources; writes to project filesystem and .gitignore |
 
 ---
 
@@ -83,7 +74,9 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Name | Type | Description | Bounded Context | Aggregate Root? |
 |------|------|-------------|-----------------|-----------------|
-| Connection | Entity | The aggregate root representing a project directory's connection to smith's agentic configuration. Tracks connection state, template source, and the set of managed files. | Connection | Yes |
+| FileSpec | Value Object | A relative path and binary content pair representing a single file to write | Connection Management | No |
+| GitignoreManager | Entity | Manages reading and mutating the smith-managed section in .gitignore | Connection Management | No |
+| Connection | Aggregate | Orchestrates the full clone or purge operation: source resolution, file fetching, filtering, writing, and .gitignore tracking | Connection Management | Yes |
 
 ---
 
@@ -91,10 +84,8 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Name | Type | Description | Bounded Context |
 |------|------|-------------|-----------------|
-| TemplateSource | Where agentic files come from: default (agents-smith), local path, or URL. Immutable once resolved. | Connection |
-| GitignoreSection | The `# smith managed` section in .gitignore. Contains entries for all agentic file patterns. Managed as a unit — added on connect, removed on disconnect. | Connection |
-| ConnectionStatus | The current state of a project's connection: connected, disconnected, or partial (some but not all agentic files present). | Connection |
-| FileSpec | A single file or directory to be written during connect or update, with a source path (from the template) and a destination path (in the project directory). | Connection |
+| Source | str | The template source string: a GitHub shorthand (`github:user/repo`), URL, or local path | Connection Management |
+| Allowed Topics | tuple[str, ...] | The set of path prefixes that gate which files are written during clone | Connection Management |
 
 ---
 
@@ -102,9 +93,9 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Subject | Relation | Object | Cardinality | Notes |
 |---------|----------|--------|-------------|-------|
-| Connection | resolves | TemplateSource | 1:1 | Each connection resolves one template source |
-| Connection | maintains | GitignoreSection | 1:1 | Each connection manages one .gitignore section |
-| Connection | manages | FileSpec | 1:many | Each connection manages multiple file specifications |
+| Connection | has many | FileSpec | 1:N | A clone operation produces multiple file specs |
+| Connection | uses | GitignoreManager | 1:1 | Each clone/purge uses one gitignore manager |
+| FileSpec | derived from | Source | N:1 | Multiple file specs come from one source |
 
 ---
 
@@ -112,7 +103,7 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Aggregate | Root Entity | Invariants | Bounded Context |
 |-----------|-------------|------------|-----------------|
-| Connection | Connection | **Atomicity:** either all agentic files are written or none are — no partial connections, ever. **Safety:** user-tracked files (not managed by smith) are never overwritten; smith-managed files are auto-updated — zero silent overwrites of user-tracked files, ever. **Clean separation:** on disconnect, no agentic files remain (only .gitignore entries) — zero orphaned files after disconnect. **Consistency:** the .gitignore section and the agentic file set must always be in sync — connected means files present AND .gitignore section present; disconnected means no agentic files present but the .gitignore section is preserved as a guard. | Connection |
+| Connection | clone/purge functions | **Reliability:** only files matching ALLOWED_TOPICS prefixes are written — zero disallowed files, ever. **Reversibility:** purge removes only files listed in the managed .gitignore section — zero non-managed files deleted. **Safety:** existing directories and files are skipped unless --overwrite is passed. | Connection Management |
 
 ---
 
@@ -120,4 +111,4 @@ smith is an AI pair programming platform that connects standardised agent config
 
 | Date | Source | Change | Reason |
 |------|--------|--------|--------|
-| 2026-05-01 | architecture-assessment | Complete rewrite for corrected product scope | Previous domain model described the wrong product (Python project template). smith is an AI pair programming platform with connect/disconnect/update/status commands. |
+| 2026-05-02 | initial | Domain model derived from working code | Baseline from existing implementation on rebuild/minimal-v2 branch |
