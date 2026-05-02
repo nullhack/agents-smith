@@ -4,10 +4,11 @@
 
 All notable changes to agents-smith will be documented in this file.
 
-## [0.3.0] - assimilated Apoc - 20260502
+## [1.0.0] - cloned Neo - 20260502
 
 ### Changed
 
+- **First major release** — stable API for `smith clone` and `smith purge`
 - **Breaking:** `smith connect` renamed to `smith clone` — the command that fetches template files and writes them to a project
 - **Breaking:** `smith disconnect` renamed to `smith purge` — the command that removes smith-managed files
 - Complete documentation rewrite: specs, features, ADRs, glossary, domain model, technical design, context map
