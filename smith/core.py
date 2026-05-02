@@ -178,9 +178,9 @@ def _extract_tar(content: bytes) -> list[FileSpec]:
                 continue
             path = Path(rel)
             if _is_allowed(path):
-                specs.append(
-                    FileSpec(relative_path=path, content=tar.extractfile(member).read())
-                )
+                file_data = tar.extractfile(member)
+                if file_data is not None:
+                    specs.append(FileSpec(relative_path=path, content=file_data.read()))
         if not specs:
             raise RuntimeError("No matching files found in tar archive")
         return specs
