@@ -42,7 +42,7 @@ Dark void background (`#0F1117`) with the S logo mark scaled to height, followed
 
 - **Convention:** `adjective-character` — one adjective from the approved list below, paired with a Matrix character name
 - **Rule:** No adjective-character pair may be reused across releases
-- **Examples:** assimilated Apoc, cloned Oracle, overwritten Bane
+- **Released:** assimilated Apoc (0.3.0), cloned Neo (1.0.0)
 
 ### Approved adjectives
 
