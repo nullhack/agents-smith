@@ -27,6 +27,8 @@ dev = [
     "pytest>=9.0.3",
     "pytest-cov>=6.1.1",
     "ruff>=0.11.5",
+    "taskipy>=1.14.1",
+    "pyright>=1.1.400",
 ]
 
 [tool.setuptools.packages.find]
@@ -44,3 +46,14 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_functions = ["test_*"]
 addopts = "--tb=short -q"
+
+[tool.taskipy.tasks]
+lint = "ruff check . && ruff format --check ."
+ruff-check = "ruff check ."
+ruff-format-check = "ruff format --check ."
+static-check = "python -m pyright smith/"
+test = "python -m pytest tests/ --tb=short -q"
+test-fast = "python -m pytest tests/ --tb=short -q -m 'not slow'"
+release-check = "python -m pytest tests/ --tb=short -q && ruff check . && ruff format --check ."
+doc-build = "python -c \"print('doc-build placeholder')\""
+doc-publish = "python -c \"print('doc-publish placeholder')\""
